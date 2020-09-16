@@ -9,4 +9,22 @@
 
 <div>
     <ejs-calendar id="calendar"></ejs-calendar>
+    <br/>
+    <ejs-numerictextbox id="numeric" value="12" decimals="2"></ejs-numerictextbox>
+    <br/>
+    <ejs-datepicker id="datepicker"></ejs-datepicker>
+    <br/>
+    <ejs-colorpicker id="element"></ejs-colorpicker>
+    <br/>
+    <ejs-datetimepicker id="datetimepicker"></ejs-datetimepicker>
+    <br/>
+    <ejs-grid  locale="zh-TW"
+        allowPaging="true" allowResizing="true" allowSorting="true" allowReordering="true" allowGrouping="true" allowFiltering="true" allowSelection="true"
+        toolbar="@(new List<string>() { "Search", "Add", "Edit", "Delete","Update","Cancel" })"    
+        id="grid" dataSource="@ViewBag.DataSource">
+    <e-grid-pagesettings pageSize="20"/> 
+    <e-grid-filterSettings type="Menu"></e-grid-filterSettings> 
+    <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showDeleteConfirmDialog="true"></e-grid-editSettings> 
+
+    </ejs-grid>    
 </div>
