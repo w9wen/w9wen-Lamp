@@ -59,7 +59,7 @@
 </html>
 
 
-<script>
+@* <script>
     var L10n = ej.base.L10n;
     L10n.load({
         'zh-TW': {
@@ -105,12 +105,12 @@
                 'nextPageTooltip': "下一頁",
                 'previousPageTooltip': "前一頁",
                 'nextPagerTooltip': '下一章',
-                'previousPagerTooltip': '前一章' *@
+                'previousPagerTooltip': '前一章'
             }                                    
         }
     });
 
-    @* function loadCultureFiles(name) {
+    function loadCultureFiles(name) {
         var files = ['currencies.json', 'numbers.json'];
         var loader = ej.base.loadCldr;
         var loadCulture = function (prop) {
@@ -126,6 +126,6 @@
             loadCulture(prop);
         }
     }
-    loadCultureFiles("zh"); *@
+    loadCultureFiles("zh");
     ej.base.setCulture('zh-TW');
-</script>
+</script> *@

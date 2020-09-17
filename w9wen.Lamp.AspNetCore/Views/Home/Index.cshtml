@@ -10,15 +10,15 @@
 <div>
     <ejs-calendar id="calendar"></ejs-calendar>
     <br/>
-    <ejs-numerictextbox id="numeric" value="12" decimals="2"></ejs-numerictextbox>
+    <ejs-numerictextbox locale="zh-TW" id="numeric" value="12" decimals="2"></ejs-numerictextbox>
     <br/>
     <ejs-datepicker id="datepicker"></ejs-datepicker>
     <br/>
-    <ejs-colorpicker id="element"></ejs-colorpicker>
+    <ejs-colorpicker locale="zh-TW" id="element"></ejs-colorpicker>
     <br/>
     <ejs-datetimepicker id="datetimepicker"></ejs-datetimepicker>
     <br/>
-    <ejs-grid  locale="zh-TW"
+    <ejs-grid locale="zh-TW"
         allowPaging="true" allowResizing="true" allowSorting="true" allowReordering="true" allowGrouping="true" allowFiltering="true" allowSelection="true"
         toolbar="@(new List<string>() { "Search", "Add", "Edit", "Delete","Update","Cancel" })"    
         id="grid" dataSource="@ViewBag.DataSource">
@@ -28,3 +28,39 @@
 
     </ejs-grid>    
 </div>
+
+<script>
+    ej.base.L10n.load({
+        'zh-TW': {
+            'numerictextbox': {
+                incrementTitle: '增加', 
+                decrementTitle: '減少'
+            },
+            'colorpicker': {
+                Apply: '套用',
+                Cancel: '取消',
+                ModeSwitcher: '模式'
+            },
+            "grid": {
+                Add: "新增",
+                Edit: "修改",
+                Delete: "刪除",
+                Cancel: "取消",
+                Update: "更新",
+                EditFormTitle: "修改: ",
+                SaveButton: "儲存",
+                CancelButton: "取消",
+                AddFormTitle: "新增進出車輛記錄",
+                EditOperationAlert: "沒有選取進出車輛記錄",
+                ConfirmDelete: "確認要刪除進出車輛記錄?",
+                OKButton: "確認",
+                currentPageInfo: "{0} of {1} 頁",
+                totalItemsInfo: "({0} 筆記錄)",
+                firstPageTooltip: "第一頁",
+                lastPageTooltip: "最後一頁",
+                nextPageTooltip: "下一頁",
+                previousPageTooltip: "前一頁",
+            },
+        }
+    });
+</script>
