@@ -8,17 +8,17 @@
 </div>
 
 <div>
-    <ejs-calendar id="calendar"></ejs-calendar>
+    <ejs-calendar id="calendar" locale="zh"></ejs-calendar>
     <br/>
-    <ejs-numerictextbox locale="zh-TW" id="numeric" value="12" decimals="2"></ejs-numerictextbox>
+    <ejs-numerictextbox locale="zh" id="numeric" value="12" decimals="2"></ejs-numerictextbox>
     <br/>
-    <ejs-datepicker id="datepicker"></ejs-datepicker>
+    <ejs-datepicker locale="zh" id="datepicker"></ejs-datepicker>
     <br/>
-    <ejs-colorpicker locale="zh-TW" id="element"></ejs-colorpicker>
+    <ejs-colorpicker locale="zh" id="element"></ejs-colorpicker>
     <br/>
-    <ejs-datetimepicker id="datetimepicker"></ejs-datetimepicker>
+    <ejs-datetimepicker id="datetimepicker" locale="zh"></ejs-datetimepicker>
     <br/>
-    <ejs-grid locale="zh-TW"
+    <ejs-grid locale="zh"
         allowPaging="true" allowResizing="true" allowSorting="true" allowReordering="true" allowGrouping="true" allowFiltering="true" allowSelection="true"
         toolbar="@(new List<string>() { "Search", "Add", "Edit", "Delete","Update","Cancel" })"    
         id="grid" dataSource="@ViewBag.DataSource">
@@ -31,7 +31,11 @@
 
 <script>
     ej.base.L10n.load({
-        'zh-TW': {
+        'zh': {
+            'datetimepicker': { 
+                placeholder: "請點選您的日期時間",
+                today:"今日"
+            },
             'numerictextbox': {
                 incrementTitle: '增加', 
                 decrementTitle: '減少'
@@ -40,6 +44,13 @@
                 Apply: '套用',
                 Cancel: '取消',
                 ModeSwitcher: '模式'
+            },
+            'datepicker': { 
+                placeholder: '請點選',
+                today: '今日'
+            },
+            'calendar': {
+                today: "今日"
             },
             "grid": {
                 Add: "新增",
@@ -50,9 +61,9 @@
                 EditFormTitle: "修改: ",
                 SaveButton: "儲存",
                 CancelButton: "取消",
-                AddFormTitle: "新增進出車輛記錄",
-                EditOperationAlert: "沒有選取進出車輛記錄",
-                ConfirmDelete: "確認要刪除進出車輛記錄?",
+                AddFormTitle: "新增記錄",
+                EditOperationAlert: "沒有選取記錄",
+                ConfirmDelete: "確認要刪除記錄?",
                 OKButton: "確認",
                 currentPageInfo: "{0} of {1} 頁",
                 totalItemsInfo: "({0} 筆記錄)",
@@ -63,4 +74,26 @@
             },
         }
     });
+
+    loadCultureFiles('zh');
+
+    function loadCultureFiles(name) {
+        var files = ['ca-gregorian.json', 'numbers.json', 'timeZoneNames.json'];
+        var loader = ej.base.loadCldr;
+
+        var loadCulture = function (prop) {
+            var val, ajax;
+            ajax = new ej.base.Ajax('../scripts/cldr-data/main/' + name + '/' + files[prop], 'GET', false);
+            
+            ajax.onSuccess = function (value) {
+                val = value;
+            };
+            ajax.send();
+            loader(JSON.parse(val));
+        };
+
+        for (var prop = 0; prop < files.length; prop++) {
+            loadCulture(prop);
+        }
+    }    
 </script>
