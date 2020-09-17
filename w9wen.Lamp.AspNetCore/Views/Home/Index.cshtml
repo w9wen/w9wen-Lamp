@@ -8,7 +8,7 @@
 </div>
 
 <div>
-    <ejs-calendar id="calendar"></ejs-calendar>
+    <ejs-calendar locale="zh-TW" id="calendar"></ejs-calendar>
     <br/>
     <ejs-numerictextbox id="numeric" value="12" decimals="2"></ejs-numerictextbox>
     <br/>
@@ -18,7 +18,7 @@
     <br/>
     <ejs-datetimepicker id="datetimepicker"></ejs-datetimepicker>
     <br/>
-    <ejs-grid  locale="zh-TW"
+    <ejs-grid locale="zh-TW"
         allowPaging="true" allowResizing="true" allowSorting="true" allowReordering="true" allowGrouping="true" allowFiltering="true" allowSelection="true"
         toolbar="@(new List<string>() { "Search", "Add", "Edit", "Delete","Update","Cancel" })"    
         id="grid" dataSource="@ViewBag.DataSource">
@@ -28,3 +28,33 @@
 
     </ejs-grid>    
 </div>
+
+<script>
+    ej.base.L10n.load({
+        'zh-TW': {
+            "grid": {
+                'Add': "新增",
+                'Edit': "修改",
+                'Delete': "刪除",
+                'Cancel': "取消",
+                'Update': "更新",
+                'EditFormTitle': "修改: ",
+                'SaveButton': "儲存",
+                'CancelButton': "取消",
+                'AddFormTitle': "新增角色",
+                'EditOperationAlert': "沒有選取角色",
+                'ConfirmDelete': "確認要刪除角色?",
+                'OKButton': "確認",
+                'currentPageInfo': "{0} of {1} 頁",
+                'totalItemsInfo': "({0} 筆記錄)",
+                'firstPageTooltip': "第一頁",
+                'lastPageTooltip': "最後一頁",
+                'nextPageTooltip': "下一頁",
+                'previousPageTooltip': "前一頁",
+            },
+            'calendar': {
+                today: "今日"
+            },            
+        }
+    });
+</script>
