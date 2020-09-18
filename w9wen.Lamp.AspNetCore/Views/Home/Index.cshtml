@@ -22,10 +22,14 @@
         allowPaging="true" allowResizing="true" allowSorting="true" allowReordering="true" allowGrouping="true" allowFiltering="true" allowSelection="true"
         toolbar="@(new List<string>() { "Search", "Add", "Edit", "Delete","Update","Cancel" })"    
         id="grid" dataSource="@ViewBag.DataSource">
-    <e-grid-pagesettings pageSize="20"/> 
-    <e-grid-filterSettings type="Menu"></e-grid-filterSettings> 
-    <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showDeleteConfirmDialog="true"></e-grid-editSettings> 
-
+        <e-grid-pagesettings pageSize="20"/> 
+        <e-grid-filterSettings type="Menu"></e-grid-filterSettings> 
+        <e-grid-editSettings allowAdding="true" allowDeleting="true" allowEditing="true" mode="Dialog" showDeleteConfirmDialog="true"></e-grid-editSettings> 
+        <e-grid-columns>
+            <e-grid-column field="OrderID" headerText="Order Id" isPrimaryKey="true"></e-grid-column>
+            <e-grid-column field="OrderDate" headerText="Order Date" format="yMd" editType="datepickeredit"></e-grid-column>
+            <e-grid-column field="ShipCountry" headerText="Ship Country" editType="dropdownedit"></e-grid-column>
+        </e-grid-columns>
     </ejs-grid>    
 </div>
 
