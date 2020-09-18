@@ -1,5 +1,27 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+    @* var DropDownList = new Syncfusion.EJ2.DropDowns.DropDownList() 
+    {  
+        DataSource = new Syncfusion.EJ2.DataManager() 
+        {  
+            Url = "/api/Employee", Adaptor = "WebApiAdaptor" 
+        }, 
+        Query = "new ej.data.Query()",  
+        Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() 
+        { 
+           Value = "Priority", Text = "Priority" 
+        } ,
+    };  *@
+
+ var DropDownList = new Syncfusion.EJ2.DropDowns.DropDownList() 
+ {
+     DataSource = ViewBag.DropdownData, 
+     Query = "new ej.data.Query()", 
+     AllowFiltering = true, 
+     Fields = new Syncfusion.EJ2.DropDowns.DropDownListFieldSettings() { Value = "Id", Text = "Country" }, 
+ };
+
 }
 
 <div class="text-center">
@@ -28,7 +50,7 @@
         <e-grid-columns>
             <e-grid-column field="OrderID" headerText="Order Id" isPrimaryKey="true"></e-grid-column>
             <e-grid-column field="OrderDate" headerText="Order Date" format="yMd" editType="datepickeredit"></e-grid-column>
-            <e-grid-column field="ShipCountry" headerText="Ship Country" editType="dropdownedit"></e-grid-column>
+            <e-grid-column field="ShipCountry" headerText="Ship Country" editType="dropdownedit" edit="new {@params = DropDownList }"></e-grid-column>
         </e-grid-columns>
     </ejs-grid>    
 </div>
