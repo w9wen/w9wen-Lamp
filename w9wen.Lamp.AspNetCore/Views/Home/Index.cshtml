@@ -8,7 +8,7 @@
 </div>
 
 <div>
-    <ejs-calendar id="calendar" locale="zh"></ejs-calendar>
+    <ejs-calendar locale="zh"></ejs-calendar>
     <br/>
     <ejs-numerictextbox id="numeric" value="12" decimals="2"></ejs-numerictextbox>
     <br/>
@@ -28,3 +28,73 @@
 
     </ejs-grid>    
 </div>
+
+
+<script>
+    ej.base.L10n.load({
+        'zh': {
+            'datetimepicker': { 
+                placeholder: "請點選您的日期時間",
+                today:"今日"
+            },
+            'numerictextbox': {
+                incrementTitle: '增加', 
+                decrementTitle: '減少'
+            },
+            'colorpicker': {
+                Apply: '套用',
+                Cancel: '取消',
+                ModeSwitcher: '模式'
+            },
+            'datepicker': { 
+                placeholder: '請點選',
+                today: '今日'
+            },
+            'calendar': {
+                today: "今日"
+            },
+            "grid": {
+                Add: "新增",
+                Edit: "修改",
+                Delete: "刪除",
+                Cancel: "取消",
+                Update: "更新",
+                EditFormTitle: "修改: ",
+                SaveButton: "儲存",
+                CancelButton: "取消",
+                AddFormTitle: "新增記錄",
+                EditOperationAlert: "沒有選取記錄",
+                ConfirmDelete: "確認要刪除記錄?",
+                OKButton: "確認",
+                currentPageInfo: "{0} of {1} 頁",
+                totalItemsInfo: "({0} 筆記錄)",
+                firstPageTooltip: "第一頁",
+                lastPageTooltip: "最後一頁",
+                nextPageTooltip: "下一頁",
+                previousPageTooltip: "前一頁",
+            },
+        }
+    });
+
+    loadCultureFiles('zh');
+
+    function loadCultureFiles(name) {
+        var files = ['ca-gregorian.json', 'numbers.json', 'timeZoneNames.json'];
+        var loader = ej.base.loadCldr;
+
+        var loadCulture = function (prop) {
+            var val, ajax;
+            ajax = new ej.base.Ajax('../scripts/cldr-data/main/' + name + '/' + files[prop], 'GET', false);
+            
+            ajax.onSuccess = function (value) {
+                val = value;
+            };
+            ajax.send();
+            loader(JSON.parse(val));
+        };
+
+        for (var prop = 0; prop < files.length; prop++) {
+            loadCulture(prop);
+        }
+    }    
+</script>
