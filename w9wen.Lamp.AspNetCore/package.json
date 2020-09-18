@@ -4,5 +4,8 @@
   "private": true,
   "devDependencies": {
     "@syncfusion/ej2-js-es5": "^18.2.44"
+  },
+  "dependencies": {
+    "cldr-data": "^36.0.0"
   }
 }

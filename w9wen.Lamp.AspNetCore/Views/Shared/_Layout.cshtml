@@ -53,13 +53,14 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<ejs-scripts></ejs-scripts>
+    <script src="~/scripts/index.js"></script>
     @RenderSection("Scripts", required: false)
 	 
 </body>
 </html>
 
 
-<script>
+@* <script>
     var L10n = ej.base.L10n;
     L10n.load({
         'zh-TW': {
@@ -102,11 +103,13 @@
                 'lastPageTooltip': "最後一頁",
                 'nextPageTooltip': "下一頁",
                 'previousPageTooltip': "前一頁",
-            },
+                'nextPagerTooltip': '下一章',
+                'previousPagerTooltip': '前一章'
+            }                                    
         }
     });
 
-    @* function loadCultureFiles(name) {
+    function loadCultureFiles(name) {
         var files = ['currencies.json', 'numbers.json'];
         var loader = ej.base.loadCldr;
         var loadCulture = function (prop) {
@@ -122,6 +125,6 @@
             loadCulture(prop);
         }
     }
-    loadCultureFiles("zh"); *@
+    loadCultureFiles("zh");
     ej.base.setCulture('zh-TW');
-</script>
+</script> *@
