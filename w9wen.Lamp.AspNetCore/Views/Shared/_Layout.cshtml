@@ -52,9 +52,81 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-	<ejs-scripts></ejs-scripts>
     @* <script src="~/scripts/index.js"></script> *@
+	<ejs-scripts></ejs-scripts>
     @RenderSection("Scripts", required: false)
 	 
 </body>
 </html>
+
+
+@* <script>
+    var L10n = ej.base.L10n;
+    L10n.load({
+        'zh-TW': {
+            'numerictextbox': {
+                incrementTitle: '增加', 
+                decrementTitle: '減少'
+            },
+            'datepicker': { 
+                placeholder: '請點選',
+                today: '今日'
+            },
+            'calendar': {
+                today: "今日"
+            },
+            'colorpicker': {
+                Apply: '套用',
+                Cancel: '取消',
+                ModeSwitcher: '模式'
+            },
+            'datetimepicker': { 
+                placeholder: "請點選您的日期時間",
+                today:"今日"
+            },
+            'grid': {
+                Add: "新增",
+                Edit: "修改",
+                Delete: "刪除",
+                @* 'Cancel': "取消",
+                'Update': "更新",
+                'EditFormTitle': "修改: ",
+                'SaveButton': "儲存",
+                'CancelButton': "取消",
+                'AddFormTitle': "新增角色",
+                'EditOperationAlert': "沒有選取角色",
+                'ConfirmDelete': "確認要刪除角色?",
+                'OKButton': "確認",
+            },
+            'pager': {
+                'currentPageInfo': "{0} of {1} 頁",
+                'totalItemsInfo': "({0} 筆記錄)",
+                'firstPageTooltip': "第一頁",
+                'lastPageTooltip': "最後一頁",
+                'nextPageTooltip': "下一頁",
+                'previousPageTooltip': "前一頁",
+                'nextPagerTooltip': '下一章',
+                'previousPagerTooltip': '前一章'
+            }                                    
+        }
+    });
+
+    function loadCultureFiles(name) {
+        var files = ['currencies.json', 'numbers.json'];
+        var loader = ej.base.loadCldr;
+        var loadCulture = function (prop) {
+            var val, ajax;
+            ajax = new ej.base.Ajax('/node_modules/cldr-data/main/zh-Hant/' + files[prop], 'GET', false);
+            ajax.onSuccess = function (value) {
+                val = value;
+            };
+            ajax.send();
+            loader(JSON.parse(val));
+        };
+        for (var prop = 0; prop < files.length; prop++) {
+            loadCulture(prop);
+        }
+    }
+    loadCultureFiles("zh");
+    ej.base.setCulture('zh-TW');
+</script> *@
