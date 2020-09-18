@@ -34,11 +34,13 @@ namespace w9wen.Lamp.AspNetCore.Controllers
             {
                 new {Id = 0, Country = "Australia"},
                 new {Id = 1, Country = "Bermuda"},
+                new {Id = 1, Country = "Brazil"},
                 new {Id = 2, Country = "Canada"},
                 new {Id = 3, Country = "Cameroon"},
                 new {Id = 4, Country = "Denmark"},
                 new {Id = 5, Country = "Finland"},
                 new {Id = 6, Country = "Greenland"},
+                new {Id = 6, Country = "Germany"},
                 new {Id = 7, Country = "Poland"},
             };
 
