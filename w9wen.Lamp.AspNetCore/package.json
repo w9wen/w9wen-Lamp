@@ -6,6 +6,7 @@
     "@syncfusion/ej2-js-es5": "^18.2.44"
   },
   "dependencies": {
+    "cldr": "^5.7.0",
     "cldr-data": "^36.0.0"
   }
 }
