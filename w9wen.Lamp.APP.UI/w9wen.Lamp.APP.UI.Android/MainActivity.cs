@@ -16,6 +16,7 @@ namespace w9wen.Lamp.APP.UI.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidInitializer()));
@@ -37,4 +38,3 @@ namespace w9wen.Lamp.APP.UI.Droid
         }
     }
 }
-
