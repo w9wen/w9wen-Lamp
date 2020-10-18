@@ -2,8 +2,8 @@ using Prism;
 using Prism.Ioc;
 using w9wen.Lamp.APP.UI.ViewModels;
 using w9wen.Lamp.APP.UI.Views;
-using Xamarin.Essentials.Interfaces;
 using Xamarin.Essentials.Implementation;
+using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
 
 namespace w9wen.Lamp.APP.UI
@@ -28,6 +28,8 @@ namespace w9wen.Lamp.APP.UI
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<OcrHomePage, OcrHomePageViewModel>();
+            containerRegistry.RegisterForNavigation<CloudOcrPage, CloudOcrPageViewModel>();
         }
     }
 }
