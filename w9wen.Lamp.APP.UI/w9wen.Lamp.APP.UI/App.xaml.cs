@@ -1,5 +1,6 @@
 using Prism;
 using Prism.Ioc;
+using w9wen.Lamp.APP.UI.Services;
 using w9wen.Lamp.APP.UI.ViewModels;
 using w9wen.Lamp.APP.UI.Views;
 using Xamarin.Essentials.Implementation;
@@ -15,9 +16,13 @@ namespace w9wen.Lamp.APP.UI
         {
         }
 
+        public static string ServerUrl { get; internal set; }
+
         protected override async void OnInitialized()
         {
             InitializeComponent();
+
+            ServerUrl = "https://w9wen-lamp.azurewebsites.net/api/";
 
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
@@ -30,6 +35,8 @@ namespace w9wen.Lamp.APP.UI
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<OcrHomePage, OcrHomePageViewModel>();
             containerRegistry.RegisterForNavigation<CloudOcrPage, CloudOcrPageViewModel>();
+
+            containerRegistry.Register<IOcrService, OcrService>();
         }
     }
 }

@@ -4,19 +4,34 @@ using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System.Threading.Tasks;
+using w9wen.Lamp.APP.UI.Services;
 
 namespace w9wen.Lamp.APP.UI.ViewModels
 {
     public class CloudOcrPageViewModel : ViewModelBase
     {
+        private readonly IOcrService ocrService;
+
         public DelegateCommand TakePhotoCommand { get; }
 
+        public DelegateCommand TryServiceCommand { get; }
+
+        #region Constructor
+
         public CloudOcrPageViewModel(INavigationService navigationService,
-                                     IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
+                                     IPageDialogService pageDialogService,
+                                     IOcrService ocrService) : base(navigationService, pageDialogService)
         {
+            this.ocrService = ocrService;
+
             this.TakePhotoCommand = new DelegateCommand(
               async () => await TakePhotoExecuteAsync().ConfigureAwait(false));
+
+            this.TryServiceCommand = new DelegateCommand(
+             async () => await TryServiceExecuteAsync().ConfigureAwait(false));
         }
+
+        #endregion Constructor
 
         #region Methods
 
@@ -44,6 +59,11 @@ namespace w9wen.Lamp.APP.UI.ViewModels
                 MaxWidthHeight = 2000,
                 DefaultCamera = CameraDevice.Front
             });
+        }
+
+        private async Task TryServiceExecuteAsync()
+        {
+            var result = await this.ocrService.GetItemAsync().ConfigureAwait(false);
         }
 
         #endregion Methods
