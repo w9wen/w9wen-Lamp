@@ -8,7 +8,7 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <button:SfButton Command="{prism:NavigateTo 'CloudOcrPage'}" Text="Assets Management" />
+            <button:SfButton Command="{prism:NavigateTo 'ChatProfilePage'}" Text="Assets Management" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
-using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -113,7 +112,7 @@ namespace w9wen.Lamp.AspNetCore.Controllers
                         //stringBuilder.AppendLine("Word bounding box: " + word.BoundingBox);
                         stringBuilder.Append(word.Text);
                     }
-                    stringBuilder.Append(Environment.NewLine);
+                    //stringBuilder.Append(Environment.NewLine);
                 }
             }
 

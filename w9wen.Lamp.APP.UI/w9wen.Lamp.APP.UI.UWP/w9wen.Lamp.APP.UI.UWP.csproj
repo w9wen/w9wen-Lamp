@@ -128,6 +128,9 @@
     <PackageReference Include="Syncfusion.Xamarin.Buttons">
       <Version>18.3.0.40</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
+      <Version>18.3.0.40</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>5.0.1</Version>
     </PackageReference>
@@ -142,7 +145,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\UIFontIcons.ttf" />
+    <Content Include="Assets\Montserrat-Bold.ttf" />
+    <Content Include="Assets\Montserrat-Medium.ttf" />
+    <Content Include="Assets\Montserrat-Regular.ttf" />
+    <Content Include="Assets\Montserrat-SemiBold.ttf" />
     <None Include="w9wen.Lamp.APP.UI.UWP_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="scale-100\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

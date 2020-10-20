@@ -1,3 +1,4 @@
+using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.XForms.iOS.Buttons;
 using Foundation;
 using Prism;
@@ -23,6 +24,7 @@ namespace w9wen.Lamp.APP.UI.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 global::Xamarin.Forms.Forms.Init();
+SfBusyIndicatorRenderer.Init();
 SfButtonRenderer.Init();
             LoadApplication(new App(new iOSInitializer()));
 
