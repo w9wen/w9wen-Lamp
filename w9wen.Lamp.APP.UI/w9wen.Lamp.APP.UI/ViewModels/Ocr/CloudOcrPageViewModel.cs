@@ -16,8 +16,6 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 
         public DelegateCommand TakePhotoCommand { get; }
 
-        public DelegateCommand TryServiceCommand { get; }
-
         #region Constructor
 
         public CloudOcrPageViewModel(INavigationService navigationService,
@@ -28,9 +26,6 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 
             this.TakePhotoCommand = new DelegateCommand(
               async () => await TakePhotoExecuteAsync().ConfigureAwait(false));
-
-            //this.TryServiceCommand = new DelegateCommand(
-            // async () => await TryServiceExecuteAsync().ConfigureAwait(false));
         }
 
         #endregion Constructor
@@ -45,7 +40,7 @@ namespace w9wen.Lamp.APP.UI.ViewModels
             {
                 await this.PageDialogService.DisplayAlertAsync(
                    "資產專案",
-                   ":( 不支援.",
+                   ":( 不支援相機功能.",
                    "確認").ConfigureAwait(false);
 
                 return;
@@ -70,11 +65,6 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 
             var result = await this.ocrService.GetItemAsync(streamList);
         }
-
-        //private async Task TryServiceExecuteAsync()
-        //{
-        //    var result = await this.ocrService.GetItemAsync().ConfigureAwait(false);
-        //}
 
         #endregion Methods
     }

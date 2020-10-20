@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision;
 using Microsoft.Azure.CognitiveServices.Vision.ComputerVision.Models;
+using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,17 +25,25 @@ namespace w9wen.Lamp.AspNetCore.Controllers
                 {
                     var fileName = formFile.FileName;
 
-                    return await AzureOcr(formFile.OpenReadStream());
+                    //return await DisplayResults(formFile.OpenReadStream());
+                    return await DisplayLines(formFile.OpenReadStream());
                 }
             }
 
             return this.Ok();
         }
 
-        private async Task<string> AzureOcr(Stream fileStream)
+        // [HttpPost]
+        // [Route("api/Ocr/GetLines")]
+        // public async Task<ActionResult<string>> GetLines()
+        // {
+        //     return this.Ok("Test");
+        // }
+
+        private async Task<OcrResult> AzureOcr(Stream fileStream)
         {
-            string subscriptionKey = "SubscriptionKey";
-            string endpoint = "Endpoint";
+            string subscriptionKey = "";
+            string endpoint = "";
 
             var computerVision = new ComputerVisionClient(new ApiKeyServiceClientCredentials(subscriptionKey))
             {
@@ -43,23 +52,24 @@ namespace w9wen.Lamp.AspNetCore.Controllers
 
             var analysis = await computerVision.RecognizePrintedTextInStreamAsync(true, fileStream);
 
-            var result = DisplayResults(analysis);
+            //var result = DisplayResults(analysis);
 
-            return result;
+            return analysis;
         }
 
-        private string DisplayResults(OcrResult analysis)
+        private async Task<string> DisplayResults(Stream fileStream)
         {
             //text
+            var ocrResult = await AzureOcr(fileStream);
 
             var stringBuilder = new StringBuilder();
 
             stringBuilder.AppendLine("Text:");
-            stringBuilder.AppendLine("Language: " + analysis.Language);
-            stringBuilder.AppendLine("Text Angle: " + analysis.TextAngle);
-            stringBuilder.AppendLine("Orientation: " + analysis.Orientation);
+            stringBuilder.AppendLine("Language: " + ocrResult.Language);
+            stringBuilder.AppendLine("Text Angle: " + ocrResult.TextAngle);
+            stringBuilder.AppendLine("Orientation: " + ocrResult.Orientation);
             stringBuilder.AppendLine("Text regions: ");
-            foreach (var region in analysis.Regions)
+            foreach (var region in ocrResult.Regions)
             {
                 stringBuilder.AppendLine("Region bounding box: " + region.BoundingBox);
                 foreach (var line in region.Lines)
@@ -74,6 +84,37 @@ namespace w9wen.Lamp.AspNetCore.Controllers
                     stringBuilder.AppendLine("\n");
                 }
                 stringBuilder.AppendLine("\n \n");
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        private async Task<string> DisplayLines(Stream fileStream)
+        {
+            //text
+            var ocrResult = await AzureOcr(fileStream);
+
+            var stringBuilder = new StringBuilder();
+
+            //stringBuilder.AppendLine("Text:");
+            //stringBuilder.AppendLine("Language: " + ocrResult.Language);
+            //stringBuilder.AppendLine("Text Angle: " + ocrResult.TextAngle);
+            //stringBuilder.AppendLine("Orientation: " + ocrResult.Orientation);
+            //stringBuilder.AppendLine("Text regions: ");
+            foreach (var region in ocrResult.Regions)
+            {
+                //stringBuilder.AppendLine("Region bounding box: " + region.BoundingBox);
+                foreach (var line in region.Lines)
+                {
+                    //stringBuilder.AppendLine("Line bounding box: " + line.BoundingBox);
+                    //stringBuilder.AppendLine(line.ToString());
+                    foreach (var word in line.Words)
+                    {
+                        //stringBuilder.AppendLine("Word bounding box: " + word.BoundingBox);
+                        stringBuilder.Append(word.Text);
+                    }
+                    stringBuilder.Append(Environment.NewLine);
+                }
             }
 
             return stringBuilder.ToString();
