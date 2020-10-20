@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
             <button:SfButton Command="{Binding TakePhotoCommand}" Text="Take Photo" />
-            <button:SfButton Command="{Binding TryServiceCommand}" Text="TRY" />
+            <!--<button:SfButton Command="{Binding TryServiceCommand}" Text="TRY" />-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

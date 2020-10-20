@@ -3,6 +3,8 @@ using Plugin.Media.Abstractions;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using w9wen.Lamp.APP.UI.Services;
 
@@ -27,8 +29,8 @@ namespace w9wen.Lamp.APP.UI.ViewModels
             this.TakePhotoCommand = new DelegateCommand(
               async () => await TakePhotoExecuteAsync().ConfigureAwait(false));
 
-            this.TryServiceCommand = new DelegateCommand(
-             async () => await TryServiceExecuteAsync().ConfigureAwait(false));
+            //this.TryServiceCommand = new DelegateCommand(
+            // async () => await TryServiceExecuteAsync().ConfigureAwait(false));
         }
 
         #endregion Constructor
@@ -59,12 +61,20 @@ namespace w9wen.Lamp.APP.UI.ViewModels
                 MaxWidthHeight = 2000,
                 DefaultCamera = CameraDevice.Front
             });
+
+            var streamList = new List<Stream>();
+            if (file != null)
+            {
+                streamList.Add(file.GetStream());
+            }
+
+            var result = await this.ocrService.GetItemAsync(streamList);
         }
 
-        private async Task TryServiceExecuteAsync()
-        {
-            var result = await this.ocrService.GetItemAsync().ConfigureAwait(false);
-        }
+        //private async Task TryServiceExecuteAsync()
+        //{
+        //    var result = await this.ocrService.GetItemAsync().ConfigureAwait(false);
+        //}
 
         #endregion Methods
     }

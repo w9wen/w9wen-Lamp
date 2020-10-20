@@ -4,7 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
+using w9wen.Lamp.BE.API;
+using w9wen.Lamp.BE.Exceptions;
 
 namespace w9wen.Lamp.APP.UI.Services
 {
@@ -23,18 +26,18 @@ namespace w9wen.Lamp.APP.UI.Services
             return client;
         }
 
-        protected async Task<T> GetItemAsync<T>(string serviceUrl, List<Stream> mediaFileList = null)
+        protected async Task<ResponseEntity<T>> GetItemAsync<T>(string serviceUrl, List<Stream> mediaFileList = null)
         {
             using (HttpClient client = GetClient())
             {
+                var response = new HttpResponseMessage();
                 try
                 {
-                    var response = new HttpResponseMessage();
-                    var stringContent = new StringContent("Empty");
-
+                    var stringContent = new StringContent(string.Empty, Encoding.UTF8, "application/json");
                     if (mediaFileList == null || mediaFileList.Count < 1)
                     {
                         //// 無上傳檔案
+                        //response = await client.PostAsync(serviceUrl, stringContent).ConfigureAwait(false);
                         response = await client.PostAsync(serviceUrl, stringContent).ConfigureAwait(false);
                     }
                     else
@@ -64,19 +67,33 @@ namespace w9wen.Lamp.APP.UI.Services
 
                     if (!response.IsSuccessStatusCode)
                     {
-                        //var error = await response.Content.ReadAsStringAsync();
-                        //var message = error != null ? error.Message : "";
                     }
 
                     var resultJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 
-                    return JsonConvert.DeserializeObject<T>(resultJson);
+                    var result = new ResponseEntity<T>
+                    {
+                        Status = ResponseStatusEnum.Success,
+                        Message = string.Empty,
+                        DetailMessage = string.Empty,
+                        Result = JsonConvert.DeserializeObject<T>(resultJson),
+                    };
+
+                    return result;
 
                     //return await response.Content.ReadAsStringAsync<T>();
                 }
-                catch (HttpRequestException ex)
+                catch (Exception ex)
                 {
-                    return new ;
+                    var result = new ResponseEntity<T>
+                    {
+                        Status = ResponseStatusEnum.Error,
+                        Message = string.Empty,
+                        DetailMessage =
+                            $"[Message: {ex.Message}]" + Environment.NewLine +
+                            $"[StackTrace: {ex.StackTrace}]"
+                    };
+                    return result;
                 }
             }
         }
