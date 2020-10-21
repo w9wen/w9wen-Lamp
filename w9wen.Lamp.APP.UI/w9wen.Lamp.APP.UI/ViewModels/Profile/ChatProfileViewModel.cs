@@ -116,8 +116,6 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
         //}
         private async Task TakePhotoExecuteAsync()
         {
-            this.IsBusy = true;
-
             await CrossMedia.Current.Initialize().ConfigureAwait(false);
 
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
@@ -132,7 +130,7 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
 
             var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
-                Directory = "Test",
+                Directory = "Assets",
                 SaveToAlbum = true,
                 CompressionQuality = 75,
                 CustomPhotoSize = 50,
@@ -140,6 +138,8 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
                 MaxWidthHeight = 2000,
                 DefaultCamera = CameraDevice.Rear
             });
+
+            this.IsBusy = true;
 
             var streamList = new List<Stream>();
             if (file != null)
