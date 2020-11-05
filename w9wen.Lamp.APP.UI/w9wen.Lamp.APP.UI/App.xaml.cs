@@ -48,6 +48,8 @@ namespace w9wen.Lamp.APP.UI
             containerRegistry.RegisterForNavigation<ChatProfilePage, ChatProfileViewModel>();
 
             containerRegistry.Register<IOcrService, OcrService>();
+            containerRegistry.RegisterForNavigation<XamarinEssentialsHomePage, XamarinEssentialsHomePageViewModel>();
+            containerRegistry.RegisterForNavigation<XamarinEssentialsScreenshotPage, XamarinEssentialsScreenshotPageViewModel>();
         }
     }
 }

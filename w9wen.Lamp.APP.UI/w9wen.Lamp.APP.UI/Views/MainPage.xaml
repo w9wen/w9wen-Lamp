@@ -10,5 +10,6 @@
     <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
         <Label Text="Welcome to Xamarin Forms and Prism!" />
         <button:SfButton Command="{prism:NavigateTo 'OcrHomePage'}" Text="OCR" />
+        <button:SfButton Command="{prism:NavigateTo 'XamarinEssentialsHomePage'}" Text="Xamarin Essentials" />
     </StackLayout>
 </ContentPage>
