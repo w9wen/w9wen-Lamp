@@ -1,3 +1,4 @@
+using Syncfusion.XForms.UWP.Border;
 using Syncfusion.SfBusyIndicator.XForms.UWP;
 using Syncfusion.XForms.UWP.Buttons;
 using System.Reflection;
@@ -56,6 +57,7 @@ namespace w9wen.Lamp.APP.UI.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
 List<Assembly> assembliesToInclude = new List<Assembly>();
+assembliesToInclude.Add(typeof(SfBorderRenderer).GetTypeInfo().Assembly);
 assembliesToInclude.Add(typeof(SfBusyIndicatorRenderer).GetTypeInfo().Assembly);
 assembliesToInclude.Add(typeof(SfButtonRenderer).GetTypeInfo().Assembly);
 Xamarin.Forms.Forms.Init(e, assembliesToInclude);

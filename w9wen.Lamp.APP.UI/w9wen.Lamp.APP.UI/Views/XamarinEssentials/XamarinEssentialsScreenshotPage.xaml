@@ -1,8 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="w9wen.Lamp.APP.UI.Views.XamarinEssentialsScreenshotPage">
-  
+<ContentPage
+    x:Class="w9wen.Lamp.APP.UI.Views.XamarinEssentialsScreenshotPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:prism="http://prismlibrary.com"
+    Title="{Binding Title}"
+    prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Content>
+        <StackLayout>
+            <button:SfButton
+                Command="{Binding ScreenshotCommand}"
+                Text="取得螢幕快取"
+                VerticalOptions="Start" />
+            <border:SfBorder
+                BorderColor="{Binding BoaderColor}"
+                BorderWidth="10"
+                CornerRadius="5">
+                <Image Source="{Binding Image}" />
+            </border:SfBorder>
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
