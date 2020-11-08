@@ -10,10 +10,13 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <StackLayout>
-            <button:SfButton
-                Command="{Binding ScreenshotCommand}"
-                Text="取得螢幕快取"
-                VerticalOptions="Start" />
+            <StackLayout Orientation="Horizontal">
+                <button:SfButton
+                    Command="{Binding ScreenshotCommand}"
+                    Text="Take Screenshot"
+                    VerticalOptions="Start" />
+                <button:SfButton Command="{Binding EmailScreenshotCommand}" Text="Mail a Screenshot" />
+            </StackLayout>
             <border:SfBorder
                 BorderColor="{Binding BoaderColor}"
                 BorderWidth="10"

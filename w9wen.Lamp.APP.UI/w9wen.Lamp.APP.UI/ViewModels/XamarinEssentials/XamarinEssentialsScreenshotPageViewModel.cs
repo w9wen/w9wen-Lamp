@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -30,7 +31,12 @@ namespace w9wen.Lamp.APP.UI.ViewModels
         private DelegateCommand screenshotCommand;
 
         public DelegateCommand ScreenshotCommand =>
-            screenshotCommand ?? (screenshotCommand = new DelegateCommand(async () => await ScreenshotExecute(), () => Screenshot.IsCaptureSupported));
+            screenshotCommand ?? (screenshotCommand = new DelegateCommand(async () => await ScreenshotExecuteAsync(), () => Screenshot.IsCaptureSupported));
+
+        private DelegateCommand emailScreenshotCommand;
+
+        public DelegateCommand EmailScreenshotCommand =>
+            emailScreenshotCommand ?? (emailScreenshotCommand = new DelegateCommand(async () => await EmailScreenshotExecuteAsync()));
 
         #endregion Command
 
@@ -40,20 +46,19 @@ namespace w9wen.Lamp.APP.UI.ViewModels
            INavigationService navigationService,
            IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
         {
-            this.Title = "Xamarin Essentials: 螢幕快取";
+            this.Title = "Xamarin Essentials: Screenshot";
             this.BoaderColor = Color.Blue;
         }
 
         #endregion Constructor
 
-        #region Methods
+        #region CommandExecute
 
-        private async Task ScreenshotExecute()
+        private async Task ScreenshotExecuteAsync()
         {
-            var mediaFile = await Screenshot.CaptureAsync().ConfigureAwait(false);
-            var stream = await mediaFile.OpenReadAsync(ScreenshotFormat.Png);
+            var screenshotStream = await this.TakeScreenshotAsync().ConfigureAwait(false);
 
-            this.Image = ImageSource.FromStream(() => stream);
+            this.Image = ImageSource.FromStream(() => screenshotStream);
 
             if (this.BoaderColor == Color.Blue)
             {
@@ -63,6 +68,34 @@ namespace w9wen.Lamp.APP.UI.ViewModels
             {
                 this.BoaderColor = Color.Blue;
             }
+        }
+
+        private async Task EmailScreenshotExecuteAsync()
+        {
+            var screenshotStream = await this.TakeScreenshotAsync().ConfigureAwait(false);
+
+            var filePath = Path.Combine(FileSystem.CacheDirectory, "Screenshot.jpg");
+
+            using (var file = File.Create(filePath))
+            {
+                await screenshotStream.CopyToAsync(file);
+            }
+
+            await Email.ComposeAsync(new EmailMessage()
+            {
+                Attachments = { new EmailAttachment(filePath) },
+            });
+        }
+
+        #endregion CommandExecute
+
+        #region Methods
+
+        private async Task<Stream> TakeScreenshotAsync()
+        {
+            var screenshotResult = await Screenshot.CaptureAsync().ConfigureAwait(false);
+            var stream = await screenshotResult.OpenReadAsync(ScreenshotFormat.Png).ConfigureAwait(false);
+            return stream;
         }
 
         #endregion Methods
