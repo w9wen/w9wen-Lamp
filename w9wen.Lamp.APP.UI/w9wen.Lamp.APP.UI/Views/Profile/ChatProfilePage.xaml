@@ -80,7 +80,6 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
                         <Grid.GestureRecognizers>
@@ -96,13 +95,7 @@
                         <Label
                             Grid.Column="1"
                             Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="庫存狀態" />
-
-                        <Label
-                            Grid.Column="2"
-                            HorizontalOptions="End"
-                            Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Next}" />
+                            Text="{Binding AssetItem.AssetNo}" />
                     </Grid>
 
                     <BoxView Style="{StaticResource SeparatorStyle}" />
@@ -117,12 +110,12 @@
                         <Label
                             Grid.Column="0"
                             Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Mail}" />
+                            Text="{StaticResource Profile}" />
 
                         <Label
                             Grid.Column="1"
                             Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="王曉明" />
+                            Text="{Binding AssetItem.Custodian}" />
                     </Grid>
 
                     <BoxView Style="{StaticResource SeparatorStyle}" />
@@ -137,12 +130,12 @@
                         <Label
                             Grid.Column="0"
                             Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource VoiceCall}" />
+                            Text="{StaticResource Home}" />
 
                         <Label
                             Grid.Column="1"
                             Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="+1-202-555-0101" />
+                            Text="{Binding AssetItem.CustodyLocation}" />
                     </Grid>
 
                     <BoxView Style="{StaticResource SeparatorStyle}" />
@@ -155,7 +148,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
+                            <!--<ColumnDefinition Width="Auto" />-->
                         </Grid.ColumnDefinitions>
 
                         <Grid.GestureRecognizers>
@@ -165,18 +158,18 @@
                         <Label
                             Grid.Column="0"
                             Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Notification}" />
+                            Text="{StaticResource Edit}" />
 
                         <Label
                             Grid.Column="1"
                             Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="Notifications" />
+                            Text="{Binding AssetItem.AssetName}" />
 
-                        <Label
+                        <!--<Label
                             Grid.Column="2"
                             HorizontalOptions="End"
                             Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Next}" />
+                            Text="{StaticResource Next}" />-->
                     </Grid>
 
                     <BoxView Style="{StaticResource SeparatorStyle}" />
@@ -191,12 +184,12 @@
                         <Label
                             Grid.Column="0"
                             Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Help}" />
+                            Text="{StaticResource ClearBookmark}" />
 
                         <Label
                             Grid.Column="1"
                             Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="Help" />
+                            Text="{Binding AssetItem.CustodyDepartment}" />
                     </Grid>
 
                     <BoxView Style="{StaticResource SeparatorStyle}" />

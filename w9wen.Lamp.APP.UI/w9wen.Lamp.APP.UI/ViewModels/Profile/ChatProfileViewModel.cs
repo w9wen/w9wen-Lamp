@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using w9wen.Lamp.APP.UI.Services;
+using w9wen.Lamp.BE;
 using Xamarin.Forms.Internals;
 
 namespace w9wen.Lamp.APP.UI.ViewModels.Profile
@@ -20,19 +21,16 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
         #region Fields
 
         private readonly IOcrService ocrService;
-        private string assetsNo;
 
         #endregion Fields
 
-        #region Properties
+        private AssetEntity assetItem;
 
-        public string AssetsNo
+        public AssetEntity AssetItem
         {
-            get { return assetsNo; }
-            set { SetProperty(ref assetsNo, value); }
+            get { return assetItem; }
+            set { SetProperty(ref assetItem, value); }
         }
-
-        #endregion Properties
 
         #region Constructor
 
@@ -147,9 +145,16 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
                 streamList.Add(file.GetStream());
             }
 
-            var result = await this.ocrService.GetItemAsync(streamList);
+            var responseResult = await this.ocrService.GetItemAsync(streamList);
 
-            this.AssetsNo = result.Result;
+            var assetItem = responseResult.Result;
+
+            this.AssetItem = assetItem;
+
+            if (this.AssetItem.AssetName == null)
+            {
+                await this.PageDialogService.DisplayAlertAsync(App.Title, "查無資產編號", App.Confirmed);
+            }
 
             this.IsBusy = false;
         }

@@ -8,6 +8,10 @@
          <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="6.0.0" />
          <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.3.0.47" />
   </ItemGroup>
+  
+   <ItemGroup>
+     <ProjectReference Include="..\w9wen.Lamp.BE\w9wen.Lamp.BE.csproj" />
+   </ItemGroup>
 
 
 </Project>
