@@ -91,6 +91,16 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 
         #region Methods
 
+        private bool ScreenshotIsSupported()
+        {
+            var isSupported = Screenshot.IsCaptureSupported;
+            return isSupported;
+        }
+
+        /// <summary>
+        /// Capture the screen shot.
+        /// </summary>
+        /// <returns>The stream of the screen shot.</returns>
         private async Task<Stream> TakeScreenshotAsync()
         {
             var screenshotResult = await Screenshot.CaptureAsync().ConfigureAwait(false);
