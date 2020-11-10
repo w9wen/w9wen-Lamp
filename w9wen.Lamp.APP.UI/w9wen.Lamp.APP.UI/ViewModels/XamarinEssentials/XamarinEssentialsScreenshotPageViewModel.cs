@@ -10,7 +10,15 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 {
     public class XamarinEssentialsScreenshotPageViewModel : ViewModelBase
     {
+        #region Fields
+
         private ImageSource image;
+
+        private Color boaderColor;
+
+        #endregion Fields
+
+        #region Properties
 
         public ImageSource Image
         {
@@ -18,13 +26,13 @@ namespace w9wen.Lamp.APP.UI.ViewModels
             set { SetProperty(ref image, value); }
         }
 
-        private Color boaderColor;
-
         public Color BoaderColor
         {
             get { return boaderColor; }
             set { SetProperty(ref boaderColor, value); }
         }
+
+        #endregion Properties
 
         #region Command
 
@@ -56,6 +64,12 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 
         private async Task ScreenshotExecuteAsync()
         {
+            if (!Screenshot.IsCaptureSupported)
+            {
+                await this.PageDialogService.DisplayAlertAsync(App.Title, "Device does not support screen shot.", App.Confirmed);
+                return;
+            }
+
             var screenshotStream = await this.TakeScreenshotAsync().ConfigureAwait(false);
 
             this.Image = ImageSource.FromStream(() => screenshotStream);
@@ -72,6 +86,12 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 
         private async Task EmailScreenshotExecuteAsync()
         {
+            if (!Screenshot.IsCaptureSupported)
+            {
+                await this.PageDialogService.DisplayAlertAsync(App.Title, "Device does not support screen shot.", App.Confirmed);
+                return;
+            }
+
             var screenshotStream = await this.TakeScreenshotAsync().ConfigureAwait(false);
 
             var filePath = Path.Combine(FileSystem.CacheDirectory, "Screenshot.jpg");

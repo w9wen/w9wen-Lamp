@@ -13,6 +13,9 @@ namespace w9wen.Lamp.APP.UI
 {
     public partial class App
     {
+        internal static readonly string Title = "w9wen LAMP";
+        internal static readonly string Confirmed = "OK";
+
         public App(IPlatformInitializer initializer)
             : base(initializer)
         {
