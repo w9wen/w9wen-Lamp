@@ -1,6 +1,7 @@
 ﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -101,21 +102,26 @@ namespace w9wen.Lamp.APP.UI.ViewModels
                 await screenshotStream.CopyToAsync(file);
             }
 
-            await Email.ComposeAsync(new EmailMessage()
+            try
             {
-                Attachments = { new EmailAttachment(filePath) },
-            });
+                await Email.ComposeAsync(new EmailMessage()
+                {
+                    Attachments = { new EmailAttachment(filePath) },
+                });
+            }
+            catch (FeatureNotSupportedException featureNotSupportedEX)
+            {
+                await this.PageDialogService.DisplayAlertAsync(App.Title, $"Device does not support Email: [{featureNotSupportedEX.Message}]", App.Confirmed);
+            }
+            catch (Exception ex)
+            {
+                await this.PageDialogService.DisplayAlertAsync(App.Title, $"Exception: [{ex.Message}]", App.Confirmed);
+            }
         }
 
         #endregion CommandExecute
 
         #region Methods
-
-        private bool ScreenshotIsSupported()
-        {
-            var isSupported = Screenshot.IsCaptureSupported;
-            return isSupported;
-        }
 
         /// <summary>
         /// Capture the screen shot.
