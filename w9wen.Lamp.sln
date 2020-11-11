@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.APP.UI.iOS", "w9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.APP.UI.UWP", "w9wen.Lamp.APP.UI\w9wen.Lamp.APP.UI.UWP\w9wen.Lamp.APP.UI.UWP.csproj", "{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.BE", "w9wen.Lamp.BE\w9wen.Lamp.BE.csproj", "{A3E2CEA3-32A2-4548-B2A3-08283DB186F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "w9wen.Lamp.BE", "w9wen.Lamp.BE\w9wen.Lamp.BE.csproj", "{A3E2CEA3-32A2-4548-B2A3-08283DB186F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -281,6 +281,8 @@ Global
 		{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}.AppStore|x86.Build.0 = Debug|x86
 		{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}.AppStore|x86.Deploy.0 = Debug|x86
 		{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}.Debug|Any CPU.Build.0 = Debug|x86
+		{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}.Debug|Any CPU.Deploy.0 = Debug|x86
 		{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}.Debug|ARM.ActiveCfg = Debug|ARM
 		{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}.Debug|ARM.Build.0 = Debug|ARM
 		{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}.Debug|ARM.Deploy.0 = Debug|ARM

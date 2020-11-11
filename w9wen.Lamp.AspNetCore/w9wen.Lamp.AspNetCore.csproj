@@ -6,7 +6,7 @@
   
    <ItemGroup>
          <PackageReference Include="Microsoft.Azure.CognitiveServices.Vision.ComputerVision" Version="6.0.0" />
-         <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.3.0.47" />
+         <PackageReference Include="Syncfusion.EJ2.AspNet.Core" Version="18.3.0.48" />
   </ItemGroup>
   
    <ItemGroup>
