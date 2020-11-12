@@ -53,6 +53,8 @@ namespace w9wen.Lamp.APP.UI
             containerRegistry.Register<IOcrService, OcrService>();
             containerRegistry.RegisterForNavigation<XamarinEssentialsHomePage, XamarinEssentialsHomePageViewModel>();
             containerRegistry.RegisterForNavigation<XamarinEssentialsScreenshotPage, XamarinEssentialsScreenshotPageViewModel>();
+            containerRegistry.RegisterForNavigation<XamarinCommunityToolkitPage, XamarinCommunityToolkitPageViewModel>();
+            containerRegistry.RegisterForNavigation<XctViewCameraPage, XctViewCameraPageViewModel>();
         }
     }
 }

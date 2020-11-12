@@ -11,5 +11,6 @@
         <Label Text="Welcome to Xamarin Forms and Prism!" />
         <button:SfButton Command="{prism:NavigateTo 'OcrHomePage'}" Text="OCR" />
         <button:SfButton Command="{prism:NavigateTo 'XamarinEssentialsHomePage'}" Text="Xamarin Essentials" />
+        <button:SfButton Command="{prism:NavigateTo 'XamarinCommunityToolkitPage'}" Text="Xamarin Community Toolkit" />
     </StackLayout>
 </ContentPage>
