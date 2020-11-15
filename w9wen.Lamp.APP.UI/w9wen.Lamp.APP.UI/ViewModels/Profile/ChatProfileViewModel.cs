@@ -32,12 +32,12 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
             set { SetProperty(ref assetItem, value); }
         }
 
-        private Image captureImage;
+        private ImageSource captureImageSource;
 
-        public Image CaptureImage
+        public ImageSource CaptureImageSource
         {
-            get { return captureImage; }
-            set { SetProperty(ref captureImage, value); }
+            get { return captureImageSource; }
+            set { SetProperty(ref captureImageSource, value); }
         }
 
         #region Constructor
@@ -96,11 +96,11 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
             var streamList = new List<Stream>();
             if (e.Image != null)
             {
-                if (this.CaptureImage == null)
-                {
-                    this.CaptureImage = new Image();
-                }
-                this.CaptureImage.Source = e.Image;
+                //if (this.CaptureImageSource == null)
+                //{
+                //    this.CaptureImageSource = new Image();
+                //}
+                this.CaptureImageSource = e.Image;
                 FileStream fileStream = new FileStream(e.Path, FileMode.Open);
 
                 streamList.Add(fileStream);

@@ -27,12 +27,12 @@
 
     <ContentPage.Content>
         <Grid>
-            <ScrollView>
+            <!--<ScrollView>-->
 
-                <StackLayout Spacing="0">
+            <StackLayout Spacing="0">
 
-                    <!--  Title  -->
-                    <!--<Grid Padding="10,20,10,10">
+                <!--  Title  -->
+                <!--<Grid Padding="10,20,10,10">
                         <Label
                             Grid.ColumnSpan="2"
                             FontFamily="{StaticResource Montserrat-Medium}"
@@ -41,10 +41,10 @@
                             Text="請掃描資產編號" />
                     </Grid>-->
 
-                    <!--<BoxView Style="{StaticResource SeparatorStyle}" />-->
+                <!--<BoxView Style="{StaticResource SeparatorStyle}" />-->
 
-                    <!--  Profile image with edit label  -->
-                    <!--<buttons:SfButton
+                <!--  Profile image with edit label  -->
+                <!--<buttons:SfButton
                         Margin="0,10,0,0"
                         BackgroundColor="Transparent"
                         BorderColor="{DynamicResource Gray-White}"
@@ -65,162 +65,175 @@
                             </Grid>
                         </buttons:SfButton.Content>
                     </buttons:SfButton>-->
-                    <StackLayout Orientation="Horizontal">
-                        <xct:CameraView
-                            x:Name="CameraView_AssetCapture"
-                            Grid.Row="0"
-                            CameraOptions="Back"
-                            CaptureOptions="Photo"
-                            HeightRequest="300"
-                            HorizontalOptions="Center"
-                            SavePhotoToFile="True"
-                            VerticalOptions="Center"
-                            WidthRequest="300"
-                            Zoom="4">
-                            <xct:CameraView.Behaviors>
-                                <prism:EventToCommandBehavior
-                                    Command="{Binding MediaCapturedCommand}"
-                                    EventArgsConverter="{StaticResource Key=mediaCapturedEventArgsConverter}"
-                                    EventName="MediaCaptured" />
-                            </xct:CameraView.Behaviors>
-                        </xct:CameraView>
-                        <Image Source="{Binding CaptureImage}" />
-                    </StackLayout>
-
-                    <!--  Profile Name  -->
-                    <Label
-                        Margin="0,10,0,10"
-                        FontFamily="{StaticResource Montserrat-Bold}"
-                        FontSize="16"
+                <Grid ColumnDefinitions="5*, 5*" RowDefinitions="6*, 4*">
+                    <xct:CameraView
+                        x:Name="CameraView_AssetCapture"
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="0"
+                        CameraOptions="Back"
+                        CaptureOptions="Photo"
+                        HeightRequest="300"
                         HorizontalOptions="Center"
-                        Text="{Binding AssetsNo}"
-                        TextColor="{DynamicResource Gray-900}"
-                        VerticalOptions="Center" />
+                        SavePhotoToFile="True"
+                        VerticalOptions="Center"
+                        WidthRequest="300"
+                        Zoom="4">
+                        <xct:CameraView.Behaviors>
+                            <prism:EventToCommandBehavior
+                                Command="{Binding MediaCapturedCommand}"
+                                EventArgsConverter="{StaticResource Key=mediaCapturedEventArgsConverter}"
+                                EventName="MediaCaptured" />
+                        </xct:CameraView.Behaviors>
+                    </xct:CameraView>
 
-                    <!--  Grid for available label and navigation icon  -->
-                    <Grid
-                        x:Name="AvailableGrid"
-                        Padding="16"
-                        ColumnSpacing="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Aspect="AspectFit"
+                        BackgroundColor="LightGray"
+                        HeightRequest="150"
+                        Source="{Binding CaptureImageSource}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        FontSize="36"
+                        Text="{Binding AssetItem.AssetNo}" />
+                </Grid>
 
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding AvailableCommand}" CommandParameter="{x:Reference AvailableGrid}" />
-                        </Grid.GestureRecognizers>
+                <!--  Profile Name  -->
+                <Label
+                    FontFamily="{StaticResource Montserrat-Bold}"
+                    FontSize="16"
+                    HorizontalOptions="Center"
+                    Text="{Binding AssetsNo}"
+                    TextColor="{DynamicResource Gray-900}"
+                    VerticalOptions="Center" />
 
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Available}"
-                            TextColor="{StaticResource Green}" />
+                <!--  Grid for available label and navigation icon  -->
+                <Grid
+                    x:Name="AvailableGrid"
+                    Padding="12"
+                    ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Label
-                            Grid.Column="1"
-                            Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="{Binding AssetItem.AssetNo}" />
-                    </Grid>
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AvailableCommand}" CommandParameter="{x:Reference AvailableGrid}" />
+                    </Grid.GestureRecognizers>
 
-                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
+                        Text="{StaticResource Available}"
+                        TextColor="{StaticResource Green}" />
 
-                    <!--  Grid for mail id label and icon  -->
-                    <Grid Padding="16" ColumnSpacing="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="{Binding AssetItem.AssetNo}" />
+                </Grid>
 
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Profile}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <Label
-                            Grid.Column="1"
-                            Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="{Binding AssetItem.Custodian}" />
-                    </Grid>
+                <!--  Grid for mail id label and icon  -->
+                <Grid Padding="12" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
+                        Text="{StaticResource Profile}" />
 
-                    <!--  Grid for mobile number label and icon  -->
-                    <Grid Padding="16" ColumnSpacing="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="{Binding AssetItem.Custodian}" />
+                </Grid>
 
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Home}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <Label
-                            Grid.Column="1"
-                            Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="{Binding AssetItem.CustodyLocation}" />
-                    </Grid>
+                <!--  Grid for mobile number label and icon  -->
+                <Grid Padding="12" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
+                        Text="{StaticResource Home}" />
 
-                    <!--  Grid for notification label and navigation icon  -->
-                    <Grid
-                        x:Name="NotificationGrid"
-                        Padding="16"
-                        ColumnSpacing="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <!--<ColumnDefinition Width="Auto" />-->
-                        </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="{Binding AssetItem.CustodyLocation}" />
+                </Grid>
 
-                        <Grid.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
-                        </Grid.GestureRecognizers>
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource Edit}" />
+                <!--  Grid for notification label and navigation icon  -->
+                <Grid
+                    x:Name="NotificationGrid"
+                    Padding="12"
+                    ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <!--<ColumnDefinition Width="Auto" />-->
+                    </Grid.ColumnDefinitions>
 
-                        <Label
-                            Grid.Column="1"
-                            Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="{Binding AssetItem.AssetName}" />
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding NotificationCommand}" CommandParameter="{x:Reference NotificationGrid}" />
+                    </Grid.GestureRecognizers>
 
-                        <!--<Label
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
+                        Text="{StaticResource Edit}" />
+
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="{Binding AssetItem.AssetName}" />
+
+                    <!--<Label
                             Grid.Column="2"
                             HorizontalOptions="End"
                             Style="{StaticResource CommonProfileIconLabelStyle}"
                             Text="{StaticResource Next}" />-->
-                    </Grid>
+                </Grid>
 
-                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                    <!--  Grid for help label and icon  -->
-                    <Grid Padding="16" ColumnSpacing="16">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
+                <!--  Grid for help label and icon  -->
+                <Grid Padding="12" ColumnSpacing="12">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                        <Label
-                            Grid.Column="0"
-                            Style="{StaticResource CommonProfileIconLabelStyle}"
-                            Text="{StaticResource ClearBookmark}" />
+                    <Label
+                        Grid.Column="0"
+                        Style="{StaticResource CommonProfileIconLabelStyle}"
+                        Text="{StaticResource ClearBookmark}" />
 
-                        <Label
-                            Grid.Column="1"
-                            Style="{StaticResource CommonProfileLabelStyle}"
-                            Text="{Binding AssetItem.CustodyDepartment}" />
-                    </Grid>
+                    <Label
+                        Grid.Column="1"
+                        Style="{StaticResource CommonProfileLabelStyle}"
+                        Text="{Binding AssetItem.CustodyDepartment}" />
+                </Grid>
 
-                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                    <StackLayout Padding="16">
-                        <!--<buttons:SfButton
+                <StackLayout Padding="12">
+                    <!--<buttons:SfButton
                             Command="{Binding TakePhotoCommand}"
                             CornerRadius="35"
                             HeightRequest="50"
@@ -228,17 +241,17 @@
                             Text="啟動相機辨識"
                             VerticalOptions="Center"
                             WidthRequest="150" />-->
-                        <buttons:SfButton
-                            Command="{Binding ShutterCommand, Source={x:Reference CameraView_AssetCapture}}"
-                            CornerRadius="35"
-                            HeightRequest="50"
-                            HorizontalOptions="Center"
-                            Text="啟動影像辨識"
-                            VerticalOptions="Center"
-                            WidthRequest="150" />
-                    </StackLayout>
+                    <buttons:SfButton
+                        Command="{Binding ShutterCommand, Source={x:Reference CameraView_AssetCapture}}"
+                        CornerRadius="35"
+                        HeightRequest="50"
+                        HorizontalOptions="Center"
+                        Text="啟動影像辨識"
+                        VerticalOptions="Center"
+                        WidthRequest="150" />
                 </StackLayout>
-            </ScrollView>
+            </StackLayout>
+            <!--</ScrollView>-->
 
             <busyindicator:SfBusyIndicator
                 AnimationType="Gear"
