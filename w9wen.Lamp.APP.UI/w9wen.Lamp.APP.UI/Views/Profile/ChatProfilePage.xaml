@@ -3,6 +3,7 @@
     x:Class="w9wen.Lamp.APP.UI.Views.Profile.ChatProfilePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:converters="clr-namespace:w9wen.Lamp.APP.UI.Converters"
@@ -66,26 +67,30 @@
                         </buttons:SfButton.Content>
                     </buttons:SfButton>-->
                 <Grid ColumnDefinitions="5*, 5*" RowDefinitions="6*, 4*">
-                    <xct:CameraView
-                        x:Name="CameraView_AssetCapture"
+                    <border:SfBorder
                         Grid.Row="0"
                         Grid.RowSpan="2"
                         Grid.Column="0"
-                        CameraOptions="Back"
-                        CaptureOptions="Photo"
-                        HeightRequest="300"
-                        HorizontalOptions="Center"
-                        SavePhotoToFile="True"
-                        VerticalOptions="Center"
-                        WidthRequest="300"
-                        Zoom="4">
-                        <xct:CameraView.Behaviors>
-                            <prism:EventToCommandBehavior
-                                Command="{Binding MediaCapturedCommand}"
-                                EventArgsConverter="{StaticResource Key=mediaCapturedEventArgsConverter}"
-                                EventName="MediaCaptured" />
-                        </xct:CameraView.Behaviors>
-                    </xct:CameraView>
+                        BorderColor="#60ff00"
+                        BorderWidth="3">
+                        <xct:CameraView
+                            x:Name="CameraView_AssetCapture"
+                            CameraOptions="Back"
+                            CaptureOptions="Photo"
+                            HeightRequest="250"
+                            HorizontalOptions="Center"
+                            SavePhotoToFile="True"
+                            VerticalOptions="Center"
+                            WidthRequest="250"
+                            Zoom="4">
+                            <xct:CameraView.Behaviors>
+                                <prism:EventToCommandBehavior
+                                    Command="{Binding MediaCapturedCommand}"
+                                    EventArgsConverter="{StaticResource Key=mediaCapturedEventArgsConverter}"
+                                    EventName="MediaCaptured" />
+                            </xct:CameraView.Behaviors>
+                        </xct:CameraView>
+                    </border:SfBorder>
 
                     <Image
                         Grid.Row="0"
