@@ -5,11 +5,15 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:busyindicator="clr-namespace:Syncfusion.SfBusyIndicator.XForms;assembly=Syncfusion.SfBusyIndicator.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:converters="clr-namespace:w9wen.Lamp.APP.UI.Converters"
+    xmlns:prism="http://prismlibrary.com"
+    xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
     Title="資產查詢"
     BackgroundColor="{DynamicResource Gray-White}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            <converters:MediaCapturedEventArgsConverter x:Key="mediaCapturedEventArgsConverter" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -28,19 +32,19 @@
                 <StackLayout Spacing="0">
 
                     <!--  Title  -->
-                    <Grid Padding="10,20,10,10">
+                    <!--<Grid Padding="10,20,10,10">
                         <Label
                             Grid.ColumnSpan="2"
                             FontFamily="{StaticResource Montserrat-Medium}"
                             HorizontalOptions="Center"
                             Style="{StaticResource CommonProfileLabelStyle}"
                             Text="請掃描資產編號" />
-                    </Grid>
+                    </Grid>-->
 
-                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                    <!--<BoxView Style="{StaticResource SeparatorStyle}" />-->
 
                     <!--  Profile image with edit label  -->
-                    <buttons:SfButton
+                    <!--<buttons:SfButton
                         Margin="0,10,0,0"
                         BackgroundColor="Transparent"
                         BorderColor="{DynamicResource Gray-White}"
@@ -60,7 +64,28 @@
                                     VerticalOptions="End" />
                             </Grid>
                         </buttons:SfButton.Content>
-                    </buttons:SfButton>
+                    </buttons:SfButton>-->
+                    <StackLayout Orientation="Horizontal">
+                        <xct:CameraView
+                            x:Name="CameraView_AssetCapture"
+                            Grid.Row="0"
+                            CameraOptions="Back"
+                            CaptureOptions="Photo"
+                            HeightRequest="300"
+                            HorizontalOptions="Center"
+                            SavePhotoToFile="True"
+                            VerticalOptions="Center"
+                            WidthRequest="300"
+                            Zoom="4">
+                            <xct:CameraView.Behaviors>
+                                <prism:EventToCommandBehavior
+                                    Command="{Binding MediaCapturedCommand}"
+                                    EventArgsConverter="{StaticResource Key=mediaCapturedEventArgsConverter}"
+                                    EventName="MediaCaptured" />
+                            </xct:CameraView.Behaviors>
+                        </xct:CameraView>
+                        <Image Source="{Binding CaptureImage}" />
+                    </StackLayout>
 
                     <!--  Profile Name  -->
                     <Label
@@ -195,12 +220,20 @@
                     <BoxView Style="{StaticResource SeparatorStyle}" />
 
                     <StackLayout Padding="16">
-                        <buttons:SfButton
+                        <!--<buttons:SfButton
                             Command="{Binding TakePhotoCommand}"
                             CornerRadius="35"
                             HeightRequest="50"
                             HorizontalOptions="Center"
                             Text="啟動相機辨識"
+                            VerticalOptions="Center"
+                            WidthRequest="150" />-->
+                        <buttons:SfButton
+                            Command="{Binding ShutterCommand, Source={x:Reference CameraView_AssetCapture}}"
+                            CornerRadius="35"
+                            HeightRequest="50"
+                            HorizontalOptions="Center"
+                            Text="啟動影像辨識"
                             VerticalOptions="Center"
                             WidthRequest="150" />
                     </StackLayout>

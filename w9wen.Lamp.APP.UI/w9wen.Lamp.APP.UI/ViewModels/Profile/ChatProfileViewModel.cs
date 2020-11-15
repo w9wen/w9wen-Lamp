@@ -1,6 +1,4 @@
-﻿using Plugin.Media;
-using Plugin.Media.Abstractions;
-using Prism.Commands;
+﻿using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using System.Collections.Generic;
@@ -8,6 +6,8 @@ using System.IO;
 using System.Threading.Tasks;
 using w9wen.Lamp.APP.UI.Services;
 using w9wen.Lamp.BE;
+using Xamarin.CommunityToolkit.UI.Views;
+using Xamarin.Forms;
 using Xamarin.Forms.Internals;
 
 namespace w9wen.Lamp.APP.UI.ViewModels.Profile
@@ -32,6 +32,14 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
             set { SetProperty(ref assetItem, value); }
         }
 
+        private Image captureImage;
+
+        public Image CaptureImage
+        {
+            get { return captureImage; }
+            set { SetProperty(ref captureImage, value); }
+        }
+
         #region Constructor
 
         /// <summary>
@@ -51,8 +59,8 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
         {
             this.ocrService = ocrService;
 
-            this.TakePhotoCommand = new DelegateCommand(
-              async () => await TakePhotoExecuteAsync().ConfigureAwait(false));
+            //this.TakePhotoCommand = new DelegateCommand(
+            //  async () => await TakePhotoExecuteAsync().ConfigureAwait(false));
         }
 
         #endregion Constructor
@@ -75,6 +83,42 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
         ///// Gets or sets the command that is executed when the notification option is clicked.
         ///// </summary>
         //public Command NotificationCommand { get; set; }
+
+        private DelegateCommand<MediaCapturedEventArgs> mediaCapturedCommand;
+
+        public DelegateCommand<MediaCapturedEventArgs> MediaCapturedCommand =>
+            mediaCapturedCommand ?? (mediaCapturedCommand = new DelegateCommand<MediaCapturedEventArgs>(async (a) => await ExecuteMediaCapturedCommand(a)));
+
+        private async Task ExecuteMediaCapturedCommand(MediaCapturedEventArgs e)
+        {
+            this.IsBusy = true;
+
+            var streamList = new List<Stream>();
+            if (e.Image != null)
+            {
+                if (this.CaptureImage == null)
+                {
+                    this.CaptureImage = new Image();
+                }
+                this.CaptureImage.Source = e.Image;
+                FileStream fileStream = new FileStream(e.Path, FileMode.Open);
+
+                streamList.Add(fileStream);
+            }
+
+            var responseResult = await this.ocrService.GetItemAsync(streamList);
+
+            var assetItem = responseResult.Result;
+
+            this.AssetItem = assetItem;
+
+            if (this.AssetItem.AssetName == null)
+            {
+                await this.PageDialogService.DisplayAlertAsync(App.Title, "查無資產編號", App.Confirmed);
+            }
+
+            this.IsBusy = false;
+        }
 
         #endregion Command
 
@@ -112,52 +156,52 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
         //    await Task.Delay(100);
         //    (obj as Grid).BackgroundColor = Color.Transparent;
         //}
-        private async Task TakePhotoExecuteAsync()
-        {
-            await CrossMedia.Current.Initialize().ConfigureAwait(false);
+        //private async Task TakePhotoExecuteAsync()
+        //{
+        //    await CrossMedia.Current.Initialize().ConfigureAwait(false);
 
-            if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
-            {
-                await this.PageDialogService.DisplayAlertAsync(
-                   "資產專案",
-                   ":( 不支援相機功能.",
-                   "確認").ConfigureAwait(false);
+        //    if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+        //    {
+        //        await this.PageDialogService.DisplayAlertAsync(
+        //           "資產專案",
+        //           ":( 不支援相機功能.",
+        //           "確認").ConfigureAwait(false);
 
-                return;
-            }
+        //        return;
+        //    }
 
-            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-            {
-                Directory = "Assets",
-                SaveToAlbum = true,
-                CompressionQuality = 75,
-                CustomPhotoSize = 50,
-                PhotoSize = PhotoSize.MaxWidthHeight,
-                MaxWidthHeight = 2000,
-                DefaultCamera = CameraDevice.Rear
-            });
+        //    var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+        //    {
+        //        Directory = "Assets",
+        //        SaveToAlbum = true,
+        //        CompressionQuality = 75,
+        //        CustomPhotoSize = 50,
+        //        PhotoSize = PhotoSize.MaxWidthHeight,
+        //        MaxWidthHeight = 2000,
+        //        DefaultCamera = CameraDevice.Rear
+        //    });
 
-            this.IsBusy = true;
+        //    this.IsBusy = true;
 
-            var streamList = new List<Stream>();
-            if (file != null)
-            {
-                streamList.Add(file.GetStream());
-            }
+        //    var streamList = new List<Stream>();
+        //    if (file != null)
+        //    {
+        //        streamList.Add(file.GetStream());
+        //    }
 
-            var responseResult = await this.ocrService.GetItemAsync(streamList);
+        //    var responseResult = await this.ocrService.GetItemAsync(streamList);
 
-            var assetItem = responseResult.Result;
+        //    var assetItem = responseResult.Result;
 
-            this.AssetItem = assetItem;
+        //    this.AssetItem = assetItem;
 
-            if (this.AssetItem.AssetName == null)
-            {
-                await this.PageDialogService.DisplayAlertAsync(App.Title, "查無資產編號", App.Confirmed);
-            }
+        //    if (this.AssetItem.AssetName == null)
+        //    {
+        //        await this.PageDialogService.DisplayAlertAsync(App.Title, "查無資產編號", App.Confirmed);
+        //    }
 
-            this.IsBusy = false;
-        }
+        //    this.IsBusy = false;
+        //}
 
         #endregion Methods
     }

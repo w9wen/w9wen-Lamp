@@ -8,13 +8,24 @@
     Title="Xamarin Community Toolkit"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <Grid>
+        <Grid RowDefinitions="9*, 1*">
             <xct:CameraView
+                Grid.Row="0"
                 CameraOptions="Back"
                 CaptureOptions="Photo"
-                HeightRequest="480"
+                HeightRequest="240"
+                HorizontalOptions="Center"
                 SavePhotoToFile="True"
-                WidthRequest="640" />
+                VerticalOptions="Center"
+                WidthRequest="400"
+                Zoom="{Binding Source={x:Reference Slider_Zoom}, Path=Value}" />
+
+            <Slider
+                x:Name="Slider_Zoom"
+                Grid.Row="1"
+                Maximum="10"
+                Minimum="0"
+                Value="5" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
