@@ -22,11 +22,11 @@
     </array>
     <key>UIAppFonts</key>
     <array>
-        <string>UIFontIcons.ttf</string>
-        <string>Montserrat-Bold.ttf</string>
-        <string>Montserrat-Medium.ttf</string>
-        <string>Montserrat-Regular.ttf</string>
-        <string>Montserrat-SemiBold.ttf</string>
+      <string>UIFontIcons.ttf</string>
+      <string>Montserrat-Bold.ttf</string>
+      <string>Montserrat-Medium.ttf</string>
+      <string>Montserrat-Regular.ttf</string>
+      <string>Montserrat-SemiBold.ttf</string>
     </array>
 
     <key>MinimumOSVersion</key>
@@ -53,5 +53,7 @@
     <string>This app needs access to microphone.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>This app needs access to the photo gallery.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>偵測您的地理位置</string>
   </dict>
 </plist>

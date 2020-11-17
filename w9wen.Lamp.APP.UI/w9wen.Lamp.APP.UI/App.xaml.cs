@@ -55,6 +55,7 @@ namespace w9wen.Lamp.APP.UI
             containerRegistry.RegisterForNavigation<XamarinEssentialsScreenshotPage, XamarinEssentialsScreenshotPageViewModel>();
             containerRegistry.RegisterForNavigation<XamarinCommunityToolkitPage, XamarinCommunityToolkitPageViewModel>();
             containerRegistry.RegisterForNavigation<XctViewCameraPage, XctViewCameraPageViewModel>();
+            containerRegistry.RegisterForNavigation<XeGeolocationPage, XeGeolocationPageViewModel>();
         }
     }
 }

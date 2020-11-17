@@ -9,6 +9,7 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <StackLayout>
+            <button:SfButton Command="{prism:NavigateTo 'XeGeolocationPage'}" Text="Geolocation" />
             <button:SfButton Command="{prism:NavigateTo 'XamarinEssentialsScreenshotPage'}" Text="Screenshot" />
         </StackLayout>
     </ContentPage.Content>

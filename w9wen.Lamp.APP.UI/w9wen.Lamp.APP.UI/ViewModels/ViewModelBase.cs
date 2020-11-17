@@ -1,10 +1,11 @@
-﻿using Prism.Mvvm;
+﻿using Prism.AppModel;
+using Prism.Mvvm;
 using Prism.Navigation;
 using Prism.Services;
 
 namespace w9wen.Lamp.APP.UI.ViewModels
 {
-    public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible
+    public class ViewModelBase : BindableBase, IInitialize, INavigationAware, IDestructible, IPageLifecycleAware
     {
         protected INavigationService NavigationService { get; }
         protected IPageDialogService PageDialogService { get; }
@@ -45,6 +46,14 @@ namespace w9wen.Lamp.APP.UI.ViewModels
         }
 
         public virtual void Destroy()
+        {
+        }
+
+        public virtual void OnAppearing()
+        {
+        }
+
+        public virtual void OnDisappearing()
         {
         }
     }
