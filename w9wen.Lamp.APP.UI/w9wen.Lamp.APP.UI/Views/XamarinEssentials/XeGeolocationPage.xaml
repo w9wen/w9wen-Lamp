@@ -1,11 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:prism="http://prismlibrary.com"
-             prism:ViewModelLocator.AutowireViewModel="True"
-             x:Class="w9wen.Lamp.APP.UI.Views.XeGeolocationPage">
+<ContentPage
+    x:Class="w9wen.Lamp.APP.UI.Views.XeGeolocationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:prism="http://prismlibrary.com"
+    prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <Button Command="{Binding StartGetGeolocationCommand}" Text="Get Geolocation" />
-        <!--<Label Text="{Binding }"-->
+        <Grid RowDefinitions="5*, 5*">
+            <Label
+                Grid.Row="0"
+                HorizontalOptions="FillAndExpand"
+                Text="{Binding GeolocationText}"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                Grid.Row="1"
+                Command="{Binding StartGetGeolocationCommand}"
+                Text="Get Geolocation" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -15,6 +15,14 @@ namespace w9wen.Lamp.APP.UI.ViewModels
     {
         private CancellationTokenSource cts;
 
+        private string feolocationText;
+
+        public string GeolocationText
+        {
+            get { return feolocationText; }
+            set { SetProperty(ref feolocationText, value); }
+        }
+
         public XeGeolocationPageViewModel(INavigationService navigationService,
                                           IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
         {
@@ -37,6 +45,14 @@ namespace w9wen.Lamp.APP.UI.ViewModels
                         DesiredAccuracy = GeolocationAccuracy.Medium,
                         Timeout = TimeSpan.FromSeconds(30),
                     });
+                }
+                if (location == null)
+                {
+                    this.GeolocationText = "No GPS";
+                }
+                else
+                {
+                    this.GeolocationText = $"{ location.Latitude}, {location.Longitude}";
                 }
             }
             catch (Exception ex)
