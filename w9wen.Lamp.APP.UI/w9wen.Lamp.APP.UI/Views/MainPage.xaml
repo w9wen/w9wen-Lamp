@@ -7,10 +7,13 @@
     xmlns:prism="http://prismlibrary.com"
     Title="{Binding Title}">
 
-    <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-        <Label Text="Welcome to Xamarin Forms and Prism!" />
-        <button:SfButton Command="{prism:NavigateTo 'OcrHomePage'}" Text="OCR" />
-        <button:SfButton Command="{prism:NavigateTo 'XamarinEssentialsHomePage'}" Text="Xamarin Essentials" />
-        <button:SfButton Command="{prism:NavigateTo 'XamarinCommunityToolkitPage'}" Text="Xamarin Community Toolkit" />
-    </StackLayout>
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <Label Text="Welcome to Xamarin Forms and Prism!" />
+            <button:SfButton Command="{prism:NavigateTo 'OcrHomePage'}" Text="OCR" />
+            <button:SfButton Command="{prism:NavigateTo 'XamarinEssentialsHomePage'}" Text="Xamarin Essentials" />
+            <button:SfButton Command="{prism:NavigateTo 'XamarinCommunityToolkitPage'}" Text="Xamarin Community Toolkit" />
+            <button:SfButton Command="{prism:NavigateTo 'XamarinSyncfusionPage'}" Text="Syncfusion" />
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

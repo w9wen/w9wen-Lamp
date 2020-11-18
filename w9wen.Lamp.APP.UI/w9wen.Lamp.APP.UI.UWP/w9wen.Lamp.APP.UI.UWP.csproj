@@ -137,6 +137,9 @@
     <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
       <Version>18.3.0.50</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfMaps">
+      <Version>18.3.0.50</Version>
+    </PackageReference>
     <PackageReference Include="Xam.Plugin.Media">
       <Version>5.0.1</Version>
     </PackageReference>

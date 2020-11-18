@@ -1,3 +1,4 @@
+using Syncfusion.SfMaps.XForms.iOS;
 using Syncfusion.XForms.iOS.Border;
 using Syncfusion.SfBusyIndicator.XForms.iOS;
 using Syncfusion.XForms.iOS.Buttons;
@@ -25,6 +26,7 @@ namespace w9wen.Lamp.APP.UI.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
 global::Xamarin.Forms.Forms.Init();
+SfMapsRenderer.Init();
 SfBorderRenderer.Init();
 SfBusyIndicatorRenderer.Init();
 SfButtonRenderer.Init();

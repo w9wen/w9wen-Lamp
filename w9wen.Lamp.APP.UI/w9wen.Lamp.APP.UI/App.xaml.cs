@@ -56,6 +56,8 @@ namespace w9wen.Lamp.APP.UI
             containerRegistry.RegisterForNavigation<XamarinCommunityToolkitPage, XamarinCommunityToolkitPageViewModel>();
             containerRegistry.RegisterForNavigation<XctViewCameraPage, XctViewCameraPageViewModel>();
             containerRegistry.RegisterForNavigation<XeGeolocationPage, XeGeolocationPageViewModel>();
+            containerRegistry.RegisterForNavigation<XamarinSyncfusionPage, XamarinSyncfusionPageViewModel>();
+            containerRegistry.RegisterForNavigation<XsfMapsPage, XsfMapsPageViewModel>();
         }
     }
 }
