@@ -9,7 +9,15 @@
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
-            <maps:SfMaps />
+            <maps:SfMaps>
+                <maps:SfMaps.Layers>
+                    <maps:ShapeFileLayer Uri="world1.shp">
+                        <maps:ShapeFileLayer.ShapeSettings>
+                            <maps:ShapeSetting ShapeFill="Gray" />
+                        </maps:ShapeFileLayer.ShapeSettings>
+                    </maps:ShapeFileLayer>
+                </maps:SfMaps.Layers>
+            </maps:SfMaps>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
