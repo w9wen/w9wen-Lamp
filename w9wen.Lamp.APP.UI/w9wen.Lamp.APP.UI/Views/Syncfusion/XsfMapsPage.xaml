@@ -8,16 +8,16 @@
     Title="Syncfusion Maps"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+        <Grid>
             <maps:SfMaps>
                 <maps:SfMaps.Layers>
-                    <maps:ShapeFileLayer Uri="world1.shp">
+                    <maps:ShapeFileLayer Uri="TOWN_MOI_1091016.shp">
                         <maps:ShapeFileLayer.ShapeSettings>
-                            <maps:ShapeSetting ShapeFill="Gray" />
+                            <maps:ShapeSetting ShapeFill="Green" />
                         </maps:ShapeFileLayer.ShapeSettings>
                     </maps:ShapeFileLayer>
                 </maps:SfMaps.Layers>
             </maps:SfMaps>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
