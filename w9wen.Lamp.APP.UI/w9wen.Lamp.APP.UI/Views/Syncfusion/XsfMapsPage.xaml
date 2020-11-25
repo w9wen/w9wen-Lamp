@@ -15,6 +15,12 @@
                         <maps:ShapeFileLayer.ShapeSettings>
                             <maps:ShapeSetting ShapeFill="Green" />
                         </maps:ShapeFileLayer.ShapeSettings>
+                        <maps:ShapeFileLayer.Markers>
+                            <maps:MapMarker
+                                Label="新北市新店區"
+                                Latitude="24.9656196"
+                                Longitude="121.5420846" />
+                        </maps:ShapeFileLayer.Markers>
                     </maps:ShapeFileLayer>
                 </maps:SfMaps.Layers>
             </maps:SfMaps>
