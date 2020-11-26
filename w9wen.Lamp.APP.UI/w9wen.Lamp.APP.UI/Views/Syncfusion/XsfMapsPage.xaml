@@ -20,6 +20,11 @@
                                 Label="新北市新店區"
                                 Latitude="24.9656196"
                                 Longitude="121.5420846" />
+
+                            <maps:MapMarker
+                                Label="{Binding CurrentPosition}"
+                                Latitude="{Binding CurrentLatitude}"
+                                Longitude="{Binding CurrentLongitude}" />
                         </maps:ShapeFileLayer.Markers>
                     </maps:ShapeFileLayer>
                 </maps:SfMaps.Layers>
