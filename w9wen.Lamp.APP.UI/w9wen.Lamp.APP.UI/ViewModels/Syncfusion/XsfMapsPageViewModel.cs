@@ -2,12 +2,15 @@
 using Prism.Services;
 using System;
 using System.Threading.Tasks;
+using w9wen.Lamp.APP.UI.Services;
 using Xamarin.Essentials;
 
 namespace w9wen.Lamp.APP.UI.ViewModels
 {
     public class XsfMapsPageViewModel : ViewModelBase
     {
+        #region Full properties
+
         private string currentPosition;
 
         public string CurrentPosition
@@ -25,6 +28,7 @@ namespace w9wen.Lamp.APP.UI.ViewModels
         }
 
         private double currentLongitude;
+        private readonly IGeolocationService geolocationService;
 
         public double CurrentLongitude
         {
@@ -32,16 +36,26 @@ namespace w9wen.Lamp.APP.UI.ViewModels
             set { SetProperty(ref currentLongitude, value); }
         }
 
+        #endregion Full properties
+
+        #region Constructor
+
         public XsfMapsPageViewModel(
             INavigationService navigationService,
-            IPageDialogService pageDialogService) : base(navigationService, pageDialogService)
+            IPageDialogService pageDialogService,
+            IGeolocationService geolocationService) : base(navigationService, pageDialogService)
         {
+            this.geolocationService = geolocationService;
         }
+
+        #endregion Constructor
+
+        #region Override
 
         public override async void OnAppearing()
         {
             //base.OnAppearing();
-            var location = await GetGeolocationAsync();
+            var location = await this.geolocationService.GetGeolocationAsync();
             if (location != null)
             {
                 this.CurrentLatitude = location.Latitude;
@@ -49,25 +63,6 @@ namespace w9wen.Lamp.APP.UI.ViewModels
             }
         }
 
-        private async Task<Location> GetGeolocationAsync()
-        {
-            try
-            {
-                //var location = await Geolocation.GetLastKnownLocationAsync();
-                //if (location == null)
-                //{
-                var location = await Geolocation.GetLocationAsync(new GeolocationRequest()
-                {
-                    DesiredAccuracy = GeolocationAccuracy.Medium,
-                    Timeout = TimeSpan.FromSeconds(30),
-                });
-                //}
-                return location;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-        }
+        #endregion Override
     }
 }

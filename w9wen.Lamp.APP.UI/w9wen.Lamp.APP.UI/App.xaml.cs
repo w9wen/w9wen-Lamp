@@ -41,7 +41,7 @@ namespace w9wen.Lamp.APP.UI
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+            #region Navigation
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
@@ -50,7 +50,6 @@ namespace w9wen.Lamp.APP.UI
 
             containerRegistry.RegisterForNavigation<ChatProfilePage, ChatProfileViewModel>();
 
-            containerRegistry.Register<IOcrService, OcrService>();
             containerRegistry.RegisterForNavigation<XamarinEssentialsHomePage, XamarinEssentialsHomePageViewModel>();
             containerRegistry.RegisterForNavigation<XamarinEssentialsScreenshotPage, XamarinEssentialsScreenshotPageViewModel>();
             containerRegistry.RegisterForNavigation<XamarinCommunityToolkitPage, XamarinCommunityToolkitPageViewModel>();
@@ -58,6 +57,13 @@ namespace w9wen.Lamp.APP.UI
             containerRegistry.RegisterForNavigation<XeGeolocationPage, XeGeolocationPageViewModel>();
             containerRegistry.RegisterForNavigation<XamarinSyncfusionPage, XamarinSyncfusionPageViewModel>();
             containerRegistry.RegisterForNavigation<XsfMapsPage, XsfMapsPageViewModel>();
+
+            #endregion Navigation
+
+            containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
+            containerRegistry.RegisterSingleton<IGeolocationService, GeolocationService>();
+
+            containerRegistry.Register<IOcrService, OcrService>();
         }
     }
 }
