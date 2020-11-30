@@ -1,9 +1,11 @@
-﻿using Prism.Navigation;
+﻿using Prism.Commands;
+using Prism.Navigation;
 using Prism.Services;
 using System;
 using System.Threading.Tasks;
 using w9wen.Lamp.APP.UI.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace w9wen.Lamp.APP.UI.ViewModels
 {
@@ -37,6 +39,33 @@ namespace w9wen.Lamp.APP.UI.ViewModels
         }
 
         #endregion Full properties
+
+        #region Delegate - Track location
+
+        private DelegateCommand trackLocationCommand;
+
+        public DelegateCommand TrackLocationCommand =>
+            trackLocationCommand ?? (trackLocationCommand = new DelegateCommand(async () => await ExecuteTrackLocationCommand()));
+
+        /// <summary>
+        /// Track location command.
+        /// </summary>
+        /// <returns>Task</returns>
+        private async Task ExecuteTrackLocationCommand()
+        {
+            Device.StartTimer(new TimeSpan(0, 0, 5), () =>
+            {
+                MainThread.BeginInvokeOnMainThread(async () =>
+                {
+                    var location = await this.geolocationService.GetGeolocationAsync().ConfigureAwait(false);
+                    this.CurrentLongitude = location.Longitude;
+                    this.CurrentLatitude = location.Latitude;
+                });
+                return true;
+            });
+        }
+
+        #endregion Delegate - Track location
 
         #region Constructor
 
