@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using ZXing.Mobile;
+using ZXing.Net.Mobile.Forms;
 
 namespace w9wen.Lamp.APP.UI.ViewModels
 {
@@ -15,17 +16,21 @@ namespace w9wen.Lamp.APP.UI.ViewModels
     {
         private DelegateCommand barcodeScanCommand;
 
+        private ZXingScannerPage scanPage;
+
         public DelegateCommand BarcodeScanCommand =>
             barcodeScanCommand ?? (barcodeScanCommand = new DelegateCommand(async () => await ExecuteBarcodeScanCommand()));
 
         private async Task ExecuteBarcodeScanCommand()
         {
-#if __ANDROID__
-// Initialize the scanner first so it can track the current context
-MobileBarcodeScanner.Initialize (Application);
-#endif
-            var scanner = new MobileBarcodeScanner();
-            var result = await scanner.Scan();
+            scanPage = new ZXingScannerPage();
+
+            scanPage.OnScanResult += ScanPage_OnScanResult; ;
+        }
+
+        private void ScanPage_OnScanResult(ZXing.Result result)
+        {
+            scanPage.IsScanning = false;
         }
 
         #region Constructor
