@@ -64,6 +64,8 @@ namespace w9wen.Lamp.APP.UI
             containerRegistry.RegisterSingleton<IGeolocationService, GeolocationService>();
 
             containerRegistry.Register<IOcrService, OcrService>();
+            containerRegistry.RegisterForNavigation<XamarinPluginsPage, XamarinPluginsPageViewModel>();
+            containerRegistry.RegisterForNavigation<XpBarcodePage, XpBarcodePageViewModel>();
         }
     }
 }

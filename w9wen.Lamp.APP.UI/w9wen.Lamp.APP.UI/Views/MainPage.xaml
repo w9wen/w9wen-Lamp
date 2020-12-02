@@ -13,6 +13,7 @@
             <button:SfButton Command="{prism:NavigateTo 'OcrHomePage'}" Text="OCR" />
             <button:SfButton Command="{prism:NavigateTo 'XamarinEssentialsHomePage'}" Text="Xamarin Essentials" />
             <button:SfButton Command="{prism:NavigateTo 'XamarinCommunityToolkitPage'}" Text="Xamarin Community Toolkit" />
+            <button:SfButton Command="{prism:NavigateTo 'XamarinPluginsPage'}" Text="Xamarin Plugins" />
             <button:SfButton Command="{prism:NavigateTo 'XamarinSyncfusionPage'}" Text="Syncfusion" />
         </StackLayout>
     </ContentPage.Content>
