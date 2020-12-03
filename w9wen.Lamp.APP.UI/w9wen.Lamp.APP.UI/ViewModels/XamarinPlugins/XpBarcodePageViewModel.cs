@@ -14,23 +14,20 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 {
     public class XpBarcodePageViewModel : ViewModelBase
     {
-        private DelegateCommand barcodeScanCommand;
+        private DelegateCommand<object> barcodeScanCommand;
 
-        private ZXingScannerPage scanPage;
+        public DelegateCommand<object> BarcodeScanCommand =>
+            barcodeScanCommand ?? (barcodeScanCommand = new DelegateCommand<object>(async (scanResult) => await ExecuteBarcodeScanCommand(scanResult)));
 
-        public DelegateCommand BarcodeScanCommand =>
-            barcodeScanCommand ?? (barcodeScanCommand = new DelegateCommand(async () => await ExecuteBarcodeScanCommand()));
-
-        private async Task ExecuteBarcodeScanCommand()
+        private async Task ExecuteBarcodeScanCommand(object scanResult)
         {
-            scanPage = new ZXingScannerPage();
-
-            scanPage.OnScanResult += ScanPage_OnScanResult; ;
+            if (scanResult != null)
+            {
+            }
         }
 
         private void ScanPage_OnScanResult(ZXing.Result result)
         {
-            scanPage.IsScanning = false;
         }
 
         #region Constructor

@@ -8,5 +8,12 @@ namespace w9wen.Lamp.APP.UI.Views
         {
             InitializeComponent();
         }
+
+        private void ZXingScannerView_OnScanResult(ZXing.Result result)
+        {
+            if (result != null)
+            {
+            }
+        }
     }
 }
