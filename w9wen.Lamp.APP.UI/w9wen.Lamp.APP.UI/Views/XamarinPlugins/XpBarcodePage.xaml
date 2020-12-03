@@ -8,19 +8,20 @@
     xmlns:zxScanner="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <Grid RowDefinitions="1*, *">
+        <Grid RowDefinitions="1*, 9*">
             <button:SfButton
                 Grid.Row="0"
-                Command="{Binding BarcodeScanCommand}"
-                Text="Barcode Scan" />
+                Text="Barcode Scan"
+                VerticalOptions="Center" />
             <zxScanner:ZXingScannerView
                 Grid.Row="1"
                 IsAnalyzing="True"
                 IsScanning="True"
                 IsTorchOn="True"
                 OnScanResult="ZXingScannerView_OnScanResult"
-                ScanResultCommand="{Binding ExecuteBarcodeScanCommand}" />
-            <zxScanner:ZXingDefaultOverlay Grid.Row="1" />
+                Result="{Binding ScanResult}"
+                ScanResultCommand="{Binding BarcodeScanCommand}" />
+            <zxScanner:ZXingDefaultOverlay Grid.Row="1" ShowFlashButton="True" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

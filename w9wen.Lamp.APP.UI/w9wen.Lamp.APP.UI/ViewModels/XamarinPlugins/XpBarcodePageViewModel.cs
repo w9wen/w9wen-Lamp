@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using ZXing;
 using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
 
@@ -14,16 +15,22 @@ namespace w9wen.Lamp.APP.UI.ViewModels
 {
     public class XpBarcodePageViewModel : ViewModelBase
     {
-        private DelegateCommand<object> barcodeScanCommand;
+        private Result scanResult;
 
-        public DelegateCommand<object> BarcodeScanCommand =>
-            barcodeScanCommand ?? (barcodeScanCommand = new DelegateCommand<object>(async (scanResult) => await ExecuteBarcodeScanCommand(scanResult)));
-
-        private async Task ExecuteBarcodeScanCommand(object scanResult)
+        public Result ScanResult
         {
-            if (scanResult != null)
-            {
-            }
+            get { return scanResult; }
+            set { SetProperty(ref scanResult, value); }
+        }
+
+        private DelegateCommand barcodeScanCommand;
+
+        public DelegateCommand BarcodeScanCommand =>
+            barcodeScanCommand ?? (barcodeScanCommand = new DelegateCommand(async () => await ExecuteBarcodeScanCommand()));
+
+        private async Task ExecuteBarcodeScanCommand()
+        {
+            var result = this.ScanResult;
         }
 
         private void ScanPage_OnScanResult(ZXing.Result result)
