@@ -17,11 +17,12 @@
                 Grid.Row="1"
                 IsAnalyzing="True"
                 IsScanning="True"
-                IsTorchOn="True"
-                OnScanResult="ZXingScannerView_OnScanResult"
-                Result="{Binding ScanResult}"
-                ScanResultCommand="{Binding BarcodeScanCommand}" />
-            <zxScanner:ZXingDefaultOverlay Grid.Row="1" ShowFlashButton="True" />
+                IsTorchOn="True">
+                <zxScanner:ZXingScannerView.Behaviors>
+                    <prism:EventToCommandBehavior Command="{Binding BarcodeScanCommand}" EventName="OnScanResult" />
+                </zxScanner:ZXingScannerView.Behaviors>
+            </zxScanner:ZXingScannerView>
+            <zxScanner:ZXingDefaultOverlay Grid.Row="1" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

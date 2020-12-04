@@ -23,14 +23,13 @@ namespace w9wen.Lamp.APP.UI.ViewModels
             set { SetProperty(ref scanResult, value); }
         }
 
-        private DelegateCommand barcodeScanCommand;
+        private DelegateCommand<object> barcodeScanCommand;
 
-        public DelegateCommand BarcodeScanCommand =>
-            barcodeScanCommand ?? (barcodeScanCommand = new DelegateCommand(async () => await ExecuteBarcodeScanCommand()));
+        public DelegateCommand<object> BarcodeScanCommand =>
+            barcodeScanCommand ?? (barcodeScanCommand = new DelegateCommand<object>(async (e) => await ExecuteBarcodeScanCommand(e)));
 
-        private async Task ExecuteBarcodeScanCommand()
+        private async Task ExecuteBarcodeScanCommand(object e)
         {
-            var result = this.ScanResult;
         }
 
         private void ScanPage_OnScanResult(ZXing.Result result)
