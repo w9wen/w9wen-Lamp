@@ -8,5 +8,9 @@ namespace w9wen.Lamp.APP.UI.Views
         {
             InitializeComponent();
         }
+
+        private void ZXingDefaultOverlay_FlashButtonClicked(Button sender, System.EventArgs e)
+        {
+        }
     }
 }

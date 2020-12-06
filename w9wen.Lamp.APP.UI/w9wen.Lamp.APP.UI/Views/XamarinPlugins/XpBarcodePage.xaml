@@ -11,18 +11,19 @@
         <Grid RowDefinitions="1*, 9*">
             <button:SfButton
                 Grid.Row="0"
+                Command="{Binding BeginScan}"
                 Text="Barcode Scan"
                 VerticalOptions="Center" />
             <zxScanner:ZXingScannerView
                 Grid.Row="1"
-                IsAnalyzing="True"
-                IsScanning="True"
-                IsTorchOn="True">
-                <zxScanner:ZXingScannerView.Behaviors>
-                    <prism:EventToCommandBehavior Command="{Binding BarcodeScanCommand}" EventName="OnScanResult" />
-                </zxScanner:ZXingScannerView.Behaviors>
-            </zxScanner:ZXingScannerView>
-            <zxScanner:ZXingDefaultOverlay Grid.Row="1" />
+                IsAnalyzing="{Binding IsAnalyzing}"
+                IsScanning="{Binding IsScanning}"
+                IsTorchOn="{Binding IsTorchOn}"
+                ScanResultCommand="{Binding BarcodeScanCommand}" />
+            <zxScanner:ZXingDefaultOverlay
+                Grid.Row="1"
+                FlashCommand="{Binding TorchOnCommand}"
+                ShowFlashButton="True" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
