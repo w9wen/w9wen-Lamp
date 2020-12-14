@@ -3,12 +3,14 @@
     x:Class="w9wen.Lamp.APP.UI.Views.XctViewCameraPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
     xmlns:prism="http://prismlibrary.com"
     xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
     Title="Xamarin Community Toolkit"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
         <Grid RowDefinitions="9*, 1*">
+
             <xct:CameraView
                 Grid.Row="0"
                 CameraOptions="Back"
@@ -19,6 +21,15 @@
                 VerticalOptions="Center"
                 WidthRequest="400"
                 Zoom="{Binding Source={x:Reference Slider_Zoom}, Path=Value}" />
+
+            <border:SfBorder
+                Grid.Row="0"
+                BorderColor="#80ff00"
+                BorderWidth="3"
+                HeightRequest="50"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                WidthRequest="200" />
 
             <Slider
                 x:Name="Slider_Zoom"
