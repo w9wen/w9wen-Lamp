@@ -4,14 +4,22 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:button="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:converters="clr-namespace:w9wen.Lamp.APP.UI.Converters"
     xmlns:prism="http://prismlibrary.com"
     xmlns:xct="clr-namespace:Xamarin.CommunityToolkit.UI.Views;assembly=Xamarin.CommunityToolkit"
     Title="Xamarin Community Toolkit"
     prism:ViewModelLocator.AutowireViewModel="True">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:MediaCapturedEventArgsConverter x:Key="mediaCapturedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowDefinitions="9*, 1*">
 
             <xct:CameraView
+                x:Name="CameraView_MediaCapture"
                 Grid.Row="0"
                 CameraOptions="Back"
                 CaptureOptions="Photo"
@@ -20,7 +28,14 @@
                 SavePhotoToFile="True"
                 VerticalOptions="Center"
                 WidthRequest="400"
-                Zoom="{Binding Source={x:Reference Slider_Zoom}, Path=Value}" />
+                Zoom="{Binding Source={x:Reference Slider_Zoom}, Path=Value}">
+                <xct:CameraView.Behaviors>
+                    <prism:EventToCommandBehavior
+                        Command="{Binding MediaCapturedCommand}"
+                        EventArgsConverter="{StaticResource Key=mediaCapturedEventArgsConverter}"
+                        EventName="MediaCaptured" />
+                </xct:CameraView.Behaviors>
+            </xct:CameraView>
 
             <border:SfBorder
                 Grid.Row="0"
@@ -31,12 +46,14 @@
                 VerticalOptions="Center"
                 WidthRequest="200" />
 
-            <Slider
-                x:Name="Slider_Zoom"
-                Grid.Row="1"
-                Maximum="10"
-                Minimum="0"
-                Value="5" />
+            <StackLayout Grid.Row="1">
+                <Slider
+                    x:Name="Slider_Zoom"
+                    Maximum="10"
+                    Minimum="0"
+                    Value="5" />
+                <button:SfButton Command="{Binding ShutterCommand, Source={x:Reference CameraView_MediaCapture}}" Text="Shoot" />
+            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
