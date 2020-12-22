@@ -16,7 +16,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <Grid RowDefinitions="9*, 1*">
+        <Grid RowDefinitions="7*, 3*">
 
             <xct:CameraView
                 x:Name="CameraView_MediaCapture"
@@ -52,7 +52,11 @@
                     Maximum="10"
                     Minimum="0"
                     Value="5" />
-                <button:SfButton Command="{Binding ShutterCommand, Source={x:Reference CameraView_MediaCapture}}" Text="Shoot" />
+                <button:SfButton
+                    Command="{Binding ShutterCommand, Source={x:Reference CameraView_MediaCapture}}"
+                    HorizontalOptions="Center"
+                    Text="Shoot"
+                    WidthRequest="200" />
             </StackLayout>
         </Grid>
     </ContentPage.Content>
