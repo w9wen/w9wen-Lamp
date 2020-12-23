@@ -8,9 +8,10 @@
     Title="Xamarin Essentials List"
     prism:ViewModelLocator.AutowireViewModel="True">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout VerticalOptions="Center">
             <button:SfButton Command="{prism:NavigateTo 'XeGeolocationPage'}" Text="Geolocation" />
             <button:SfButton Command="{prism:NavigateTo 'XamarinEssentialsScreenshotPage'}" Text="Screenshot" />
+            <button:SfButton Command="{prism:NavigateTo 'XeBatteryPage'}" Text="Battery" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

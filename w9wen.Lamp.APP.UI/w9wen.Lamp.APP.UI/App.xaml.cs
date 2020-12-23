@@ -66,6 +66,7 @@ namespace w9wen.Lamp.APP.UI
             containerRegistry.Register<IOcrService, OcrService>();
             containerRegistry.RegisterForNavigation<XamarinPluginsPage, XamarinPluginsPageViewModel>();
             containerRegistry.RegisterForNavigation<XpBarcodePage, XpBarcodePageViewModel>();
+            containerRegistry.RegisterForNavigation<XeBatteryPage, XeBatteryPageViewModel>();
         }
     }
 }
