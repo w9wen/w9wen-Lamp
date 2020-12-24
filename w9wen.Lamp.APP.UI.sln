@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "w9wen.Lamp.APP.UI", "w9wen.Lamp.APP.UI\w9wen.Lamp.APP.UI.csproj", "{C151773E-27DB-48BB-BF2E-7523D959F9E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "w9wen.Lamp.APP.UI", "w9wen.Lamp.APP.UI\w9wen.Lamp.APP.UI\w9wen.Lamp.APP.UI.csproj", "{C151773E-27DB-48BB-BF2E-7523D959F9E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.APP.UI.Android", "w9wen.Lamp.APP.UI.Android\w9wen.Lamp.APP.UI.Android.csproj", "{5AAAA0D1-4F9D-4A20-81E2-2D069D8F4679}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.APP.UI.Android", "w9wen.Lamp.APP.UI\w9wen.Lamp.APP.UI.Android\w9wen.Lamp.APP.UI.Android.csproj", "{5AAAA0D1-4F9D-4A20-81E2-2D069D8F4679}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.APP.UI.iOS", "w9wen.Lamp.APP.UI.iOS\w9wen.Lamp.APP.UI.iOS.csproj", "{0EA17CE1-A11A-408B-9782-57F9522F7D7D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.APP.UI.iOS", "w9wen.Lamp.APP.UI\w9wen.Lamp.APP.UI.iOS\w9wen.Lamp.APP.UI.iOS.csproj", "{0EA17CE1-A11A-408B-9782-57F9522F7D7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.APP.UI.UWP", "w9wen.Lamp.APP.UI.UWP\w9wen.Lamp.APP.UI.UWP.csproj", "{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "w9wen.Lamp.APP.UI.UWP", "w9wen.Lamp.APP.UI\w9wen.Lamp.APP.UI.UWP\w9wen.Lamp.APP.UI.UWP.csproj", "{4A7B25ED-9D79-43D7-A4FB-51100EBA6673}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "w9wen.Lamp.BE", "..\w9wen.Lamp.BE\w9wen.Lamp.BE.csproj", "{E9594B77-45B1-4EC7-9E02-F1D69CAEFF9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "w9wen.Lamp.BE", "w9wen.Lamp.BE\w9wen.Lamp.BE.csproj", "{E9594B77-45B1-4EC7-9E02-F1D69CAEFF9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

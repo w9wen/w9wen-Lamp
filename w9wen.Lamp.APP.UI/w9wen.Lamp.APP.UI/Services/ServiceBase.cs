@@ -37,7 +37,6 @@ namespace w9wen.Lamp.APP.UI.Services
                     if (mediaFileList == null || mediaFileList.Count < 1)
                     {
                         //// 無上傳檔案
-                        //response = await client.PostAsync(serviceUrl, stringContent).ConfigureAwait(false);
                         response = await client.PostAsync(serviceUrl, stringContent).ConfigureAwait(false);
                     }
                     else
@@ -80,8 +79,6 @@ namespace w9wen.Lamp.APP.UI.Services
                     };
 
                     return result;
-
-                    //return await response.Content.ReadAsStringAsync<T>();
                 }
                 catch (Exception ex)
                 {
