@@ -22,10 +22,9 @@
                 x:Name="CameraView_MediaCapture"
                 Grid.Row="0"
                 CameraOptions="Back"
-                CaptureOptions="Photo"
+                CaptureMode="Photo"
                 HeightRequest="240"
                 HorizontalOptions="Center"
-                SavePhotoToFile="True"
                 VerticalOptions="Center"
                 WidthRequest="400"
                 Zoom="{Binding Source={x:Reference Slider_Zoom}, Path=Value}">

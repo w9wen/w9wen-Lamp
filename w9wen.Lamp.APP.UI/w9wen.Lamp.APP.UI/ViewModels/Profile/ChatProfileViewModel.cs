@@ -101,9 +101,9 @@ namespace w9wen.Lamp.APP.UI.ViewModels.Profile
                 //    this.CaptureImageSource = new Image();
                 //}
                 this.CaptureImageSource = e.Image;
-                FileStream fileStream = new FileStream(e.Path, FileMode.Open);
+                //FileStream fileStream = new FileStream(e.Path, FileMode.Open);
 
-                streamList.Add(fileStream);
+                //streamList.Add(ImageSource.str);
             }
 
             var responseResult = await this.ocrService.GetItemAsync(streamList);
