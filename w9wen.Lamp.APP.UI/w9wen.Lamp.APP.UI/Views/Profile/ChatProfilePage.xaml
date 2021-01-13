@@ -76,10 +76,9 @@
                         <xct:CameraView
                             x:Name="CameraView_AssetCapture"
                             CameraOptions="Back"
-                            CaptureOptions="Photo"
+                            CaptureMode="Photo"
                             HeightRequest="250"
                             HorizontalOptions="Center"
-                            SavePhotoToFile="True"
                             VerticalOptions="Center"
                             WidthRequest="250"
                             Zoom="4">
